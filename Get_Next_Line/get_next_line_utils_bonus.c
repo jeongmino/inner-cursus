@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:44:55 by junoh             #+#    #+#             */
-/*   Updated: 2022/01/20 15:59:55 by junoh            ###   ########.fr       */
+/*   Updated: 2022/02/04 16:25:12 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*ft_strjoin(char *left_string_buf, char *read_buf)
 	len2 = ft_strlen(read_buf);
 	str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
 	if (str == NULL)
-		return (0);
+		return (NULL);
 	ft_strlcpy(str, left_string_buf, len1 + 1);
 	ft_strlcat(str + len1, read_buf, len2 + 1);
 	free(left_string_buf);
