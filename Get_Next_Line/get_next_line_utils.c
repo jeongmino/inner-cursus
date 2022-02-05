@@ -5,91 +5,63 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/04 22:13:24 by junoh             #+#    #+#             */
-/*   Updated: 2022/02/04 22:13:29 by junoh            ###   ########.fr       */
+/*   Created: 2022/01/11 19:44:55 by junoh             #+#    #+#             */
+/*   Updated: 2022/02/05 21:23:50 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "get_next_line.h"
-size_t  ft_strlcpy(char *dst, char *src, size_t dstsize)
+
+char	*ft_strchr(char *s, int c)
 {
-    size_t      src_len;
-    size_t      idx;
-    src_len = 0;
-    if (src != NULL)
-    {
-        while (src[src_len])
-        src_len++;
-    }
-    idx = 0;
-    while (idx + 1 < dstsize && idx < src_len)
-    {
-        dst[idx] = src[idx];
-        idx++;
-    }
-    if (dstsize > 0)
-        dst[idx] = '\0';
-    return (src_len);
+	if (s == NULL)
+		return (0);
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == (char)c)
+		return ((char *)s);
+	else
+		return (0);
 }
-char    *ft_strchr(char *s, int c)
+
+int	ft_strlen(char *s)
 {
-    if (s == NULL)
-        return (0);
-    while (*s)
-    {
-        if (*s == (char)c)
-            return ((char *)s);
-        s++;
-    }
-    if (*s == (char)c)
-        return ((char *)s);
-    else
-        return (0);
+	int	len;
+
+	len = 0;
+	while (*s++)
+		len++;
+	return (len);
 }
-int ft_strlen(char *s)
+
+char	*ft_strjoin(char *left_string_buf, char *read_buf)
 {
-    int len;
-    len = 0;
-    while (*s++)
-        len++;
-    return (len);
-}
-size_t  ft_strlcat(char *dst, char *src, size_t dstsize)
-{
-    size_t  total;
-    size_t  srclen;
-    size_t  i;
-    total = 0;
-    while (total < dstsize && dst[total])
-        total++;
-    srclen = ft_strlen(src);
-    i = total;
-    while (*src != '\0' && i + 1 < dstsize)
-        *(dst + i++) = *src++;
-    if (i < dstsize)
-        dst[i] = '\0';
-    return (total + srclen);
-}
-char    *ft_strjoin(char *left_string_buf, char *read_buf)
-{
-    char    *str;
-    int     len1;
-    int     len2;
-    if (left_string_buf == NULL)
-    {
-        left_string_buf = (char *)malloc(sizeof(char) * 1);
-        left_string_buf[0] = '\0';
-    }
-    if (left_string_buf == NULL || read_buf == NULL)
-        return (NULL);
-    len1 = ft_strlen(left_string_buf);
-    len2 = ft_strlen(read_buf);
-    str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-    if (str == NULL)
-        return (NULL);
-    ft_strlcpy(str, left_string_buf, len1 + 1);
-    ft_strlcat(str + len1, read_buf, len2 + 1);
-    free(left_string_buf);
-    return (str);
+	char	*str;
+	int		idx;
+	int		jdx;
+
+	if (left_string_buf == NULL)
+	{
+		left_string_buf = (char *)malloc(sizeof(char) * 1);
+		left_string_buf[0] = '\0';
+	}
+	if (left_string_buf == NULL || read_buf == NULL)
+		return (0);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(left_string_buf) \
+	+ ft_strlen(read_buf) + 1));
+	if (str == NULL)
+		return (NULL);
+	idx = -1;
+	jdx = 0;
+	while (left_string_buf[++idx] != '\0')
+		str[idx] = left_string_buf[idx];
+	while (read_buf[jdx] != '\0')
+		str[idx++] = read_buf[jdx++];
+	str[ft_strlen(left_string_buf) + ft_strlen(read_buf)] = '\0';
+	free(left_string_buf);
+	return (str);
 }
