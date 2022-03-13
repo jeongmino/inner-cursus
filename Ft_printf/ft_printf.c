@@ -9,5 +9,6 @@ int ft_printf(const char *format, ...)
         return (-1);
     va_start(ap, format);
     result = ft_parse_format(ap, format);
+    va_end(ap);
     return (result);
 }

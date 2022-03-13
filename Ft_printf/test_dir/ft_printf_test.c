@@ -10,7 +10,7 @@ int main(void)
 
     num = 100;
 
-    cnt = printf("num : %d\n", num);
+    cnt = printf("%#\n asd %d", num, num);
     printf("cnt : %d\n", cnt);
     return (0);
 }
