@@ -1,9 +1,10 @@
 #include<stdio.h>
 #include<stdarg.h>
 
-double va_list_sum(int fixedArg1, int fixedArg2, ...)
+int va_list_sum(int fixedArg1, int fixedArg2, ...)
 {
-    double result;
+    long long result;
+	unsigned int tmp;
     va_list ap;
 
     result = 0;
@@ -12,7 +13,9 @@ double va_list_sum(int fixedArg1, int fixedArg2, ...)
     va_start(ap, fixedArg2);
     for(int i = 0; i < fixedArg1; i++)
     {
-        result += va_arg(ap, double);
+        tmp = va_arg(ap, unsigned int);
+		printf("hex%d = %X\n", i + 1, tmp);
+		result += tmp;
     }
     va_end(ap);
     return (result);
@@ -20,8 +23,10 @@ double va_list_sum(int fixedArg1, int fixedArg2, ...)
 
 int main(void)
 {
-    double sum;
-
-    sum = va_list_sum(2, 21, 5.3, 3.1);
-    printf("5.3 + 3.1 = %g\n", sum);
+    unsigned int sum;
+	unsigned int hex1, hex2;
+	hex1 = 0xfe;
+	hex2 = 0x1;
+    sum = va_list_sum(2, 21, hex1, hex2);
+    printf("5 + 3 = %X\n", sum);
 }

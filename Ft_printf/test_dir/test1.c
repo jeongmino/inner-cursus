@@ -2,14 +2,8 @@
 
 int main(void)
 {
-    unsigned long long p;
-    int *ptr;
-    int num;
-    
-    num = 0;
-    ptr = &num;
-    p = (unsigned long long)ptr;
+	int num = 0b10000;
+    printf("hex = %X\n", num);
 
-    printf("the result is : %llx\n", p);
-    return (0);
+	return (0);
 }

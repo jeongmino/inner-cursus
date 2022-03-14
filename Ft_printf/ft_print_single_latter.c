@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_print_single_latter.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: junoh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 16:55:03 by junoh             #+#    #+#             */
-/*   Updated: 2022/03/14 20:21:24 by junoh            ###   ########.fr       */
+/*   Created: 2022/03/14 21:11:15 by junoh             #+#    #+#             */
+/*   Updated: 2022/03/14 21:28:11 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+int ft_print_c(va_list ap)
 {
-	unsigned char	*ptr;
+	char 	c;
+	int 	flag;
 
-	ptr = (unsigned char *)b;
-	while (len--)
-		*ptr++ = (unsigned char)c;
-	return (b);
+	flag = va_arg(ap, int);
+	if (ft_isascii(flag))
+	{
+		c = (char)flag;
+		ft_putchar_fd(c, 1);
+	}	
+	return (1);
 }

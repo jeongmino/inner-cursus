@@ -1,38 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_count_read.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/28 19:54:35 by junoh             #+#    #+#             */
-/*   Updated: 2022/03/14 19:39:28 by junoh            ###   ########.fr       */
+/*   Created: 2022/03/14 16:49:11 by junoh             #+#    #+#             */
+/*   Updated: 2022/03/14 19:44:32 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+
+int	ft_numsize_count(long long num, int flag)
 {
-	if (fd < 0)
-		return ;
-	if (n == -2147483648)
+	int base;
+	int	read_size;
+
+	base = flag;
+	read_size = 0;
+	if (num < 0)
 	{
-		write(fd, "-2147483648", 11);
-		return ;
+		read_size++;
+		num *= -1;
 	}
-	if (n < 0)
+	while (num != 0)
 	{
-		n *= -1;
-		write(fd, "-", 1);
+		num = num / base;
+		read_size++;
 	}
-	if (n < 10)
-	{
-		ft_putchar_fd(n + '0', fd);
-		return ;
-	}
-	else
-		ft_putnbr_fd(n / 10, fd);
-	ft_putchar_fd((n % 10) + '0', fd);
-	return ;
+	return (read_size);
 }
+		
+
+
+int ft_count_read(void *readed_arg)
+{
+	void *arg_cpy;
+
+
+}
+
