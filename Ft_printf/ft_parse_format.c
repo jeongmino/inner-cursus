@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:09:33 by junoh             #+#    #+#             */
-/*   Updated: 2022/03/14 21:28:36 by junoh            ###   ########.fr       */
+/*   Updated: 2022/03/16 17:15:51 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int ft_parse_format(va_list ap, const char *format)
 {
     int flag;
     int size;
-    
+
     size = 0;
     while (*format != '\0')
     {
@@ -35,7 +35,7 @@ int ft_parse_format(va_list ap, const char *format)
             size += flag;
         }
     }
-    return (size);   
+    return (size);
 }
 
 int ft_check_format(va_list ap, const char *format)
@@ -44,12 +44,12 @@ int ft_check_format(va_list ap, const char *format)
 
     read_size = 0;
 	if (*format == '\0')
-		read_size = -1; 
+		return (-1);
 	else if (*format == 'd' || *format == 'i')
-        read_size = ft_print_di(ap)
+        read_size = ft_print_di(ap);
 	else if (*format == 'u')
 		read_size = ft_print_u(ap);
-	else if (*format == 'x' || *format = 'X')
+	else if (*format == 'x' || *format == 'X')
 		read_size = ft_print_x(ap, *format);
 	else if (*format == 's')
 		read_size = ft_print_s(ap);
@@ -60,7 +60,7 @@ int ft_check_format(va_list ap, const char *format)
 	else if (*format == '%')
 	{
 		read_size = 1;
-		ft_putchar('%', 1);
+		ft_putchar_fd('%', 1);
 	}
 	else
 	{

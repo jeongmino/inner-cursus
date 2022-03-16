@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_single_latter.c                           :+:      :+:    :+:   */
+/*   ft_print_letters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junoh <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 21:11:15 by junoh             #+#    #+#             */
-/*   Updated: 2022/03/14 21:28:11 by junoh            ###   ########.fr       */
+/*   Created: 2022/03/16 16:27:30 by junoh             #+#    #+#             */
+/*   Updated: 2022/03/16 16:27:33 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ int ft_print_c(va_list ap)
 	{
 		c = (char)flag;
 		ft_putchar_fd(c, 1);
-	}	
+	}
 	return (1);
+}
+
+int	ft_print_s(va_list ap)
+{
+	char	*str;
+	char	*tmp;
+	int		read_size;
+
+	str = va_arg(ap, char *);
+	tmp = str;
+	ft_putstr_fd(str, 1);
+	read_size = ft_strlen(tmp);
+	return (read_size);
 }
