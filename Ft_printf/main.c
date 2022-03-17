@@ -1,33 +1,21 @@
 #include "ft_printf.h"
 #include <stdio.h>
-
+#include <limits.h>
+#include <string.h>
 int	main(void)
 {
-	int	di = 255;
-	int	u = -255;
+	int	di = 0;
+	int	u = -100;
 	unsigned int hex = 255;
-	char	c = 'c';
 	char	*str = "42seoul";
-	int	ft_num = 0;
+	int	ft_num = 200;
 	int	num = 0;
 
-	num = printf("printf di = %d, %i\n", di, di);
-	ft_num = ft_printf("ft_printf di = %d, %i\n", di, di);
+    num = 100;
+    
+    num = printf("%p\n ", (void *)15);
+    ft_num = ft_printf("%p\n ", (void *)15);
 	printf("num = %d, ft_num = %d\n", num, ft_num);
 
-    /*
-
-	num = printf("printf u =  %u\n",di);
-	ft_num = ft_printf("ft_printf u = %u\n", di);
-	printf("num = %d, ft_num = %d\n", num, ft_num);
-
-	num = printf("printf xX = %x, %X\n", hex, hex);
-	ft_num = ft_printf("ft_printf xX = %x, %X\n", hex, hex);
-	printf("num = %d, ft_num = %d\n", num, ft_num);
-
-	num = printf("printf c = %c\n",c);
-	ft_num = ft_printf("ft_printf c = %c\n",c);
-	printf("num = %d, ft_num = %d\n", num, ft_num);
-    */
 	return (0);
 }

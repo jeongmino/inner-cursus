@@ -14,7 +14,8 @@ int va_list_sum(int fixedArg1, int fixedArg2, ...)
     for(int i = 0; i < fixedArg1; i++)
     {
         tmp = va_arg(ap, unsigned int);
-		printf("hex%d = %X\n", i + 1, tmp);
+		printf("%p\n", &ap);
+        printf("hex%d = %X\n", i + 1, tmp);
 		result += tmp;
     }
     va_end(ap);

@@ -18,7 +18,7 @@ int main(int ac, char ** av)
 {
 	signal(SIGSEGV, sigsegv);
 	cout << FG_LYELLOW << "category: c" << RESET_ALL;
-	
+
 	testName = av[0];
 	if (ac != 1)
 		printTestNumber(av[1], TEST_LIMIT);
