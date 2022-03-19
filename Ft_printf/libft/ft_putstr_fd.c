@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 19:47:32 by junoh             #+#    #+#             */
-/*   Updated: 2022/03/17 15:03:29 by junoh            ###   ########.fr       */
+/*   Updated: 2022/03/20 00:14:28 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putstr_fd(char *s, int fd)
 {
 	if (s == NULL)
-        s = "(null)";     
-    write(fd, s, ft_strlen(s));
+		s = "(null)";
+	write(fd, s, ft_strlen(s));
 	return ;
 }

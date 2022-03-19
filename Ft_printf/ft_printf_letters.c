@@ -6,16 +6,16 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:27:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/03/17 15:05:07 by junoh            ###   ########.fr       */
+/*   Updated: 2022/03/20 00:12:25 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_print_c(va_list *ap)
+int	ft_print_c(va_list *ap)
 {
-	char 	c;
-	int 	flag;
+	char	c;
+	int		flag;
 
 	flag = va_arg(*ap, int);
 	if (ft_isascii(flag))
@@ -23,8 +23,8 @@ int ft_print_c(va_list *ap)
 		c = (char)flag;
 		ft_putchar_fd(c, 1);
 	}
-    else
-        ft_putchar_fd('0', 1);
+	else
+		ft_putchar_fd('0', 1);
 	return (1);
 }
 
@@ -37,9 +37,9 @@ int	ft_print_s(va_list *ap)
 	str = va_arg(*ap, char *);
 	tmp = str;
 	ft_putstr_fd(str, 1);
-    if (str != NULL)
-	    read_size = ft_strlen(tmp);
-    else
-        read_size = ft_strlen("(null)");
+	if (str != NULL)
+		read_size = ft_strlen(tmp);
+	else
+		read_size = ft_strlen("(null)");
 	return (read_size);
 }
