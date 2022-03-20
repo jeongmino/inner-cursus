@@ -6,7 +6,7 @@
 #    By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/16 16:55:33 by junoh             #+#    #+#              #
-#    Updated: 2022/03/16 16:59:30 by junoh            ###   ########.fr        #
+#    Updated: 2022/03/20 23:45:15 by junoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS	= ft_printf.c \
 OBJS	= $(SRCS:.c=.o)
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< -I.
+	@$(CC) $(CFLAGS) -c $< -I.
 
 $(NAME) : $(OBJS)
 	make -C $(LIBFTDIR)
