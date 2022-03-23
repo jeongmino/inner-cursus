@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:44:24 by junoh             #+#    #+#             */
-/*   Updated: 2022/03/20 00:07:57 by junoh            ###   ########.fr       */
+/*   Updated: 2022/03/21 23:35:43 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ int	ft_print_x(va_list *ap, char flag)
 	int				i;
 
 	hexa_num = va_arg(*ap, unsigned int);
-	ft_memset(hexa_arr, 0, 8);
 	i = 0;
-	while (hexa_num != 0 || i < 8)
+	while (i < 8)
 	{
 		div = hexa_num % 16;
 		hexa_arr[i] = "0123456789ABCDEF"[div];

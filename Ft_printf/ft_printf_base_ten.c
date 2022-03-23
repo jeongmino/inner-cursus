@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:36:43 by junoh             #+#    #+#             */
-/*   Updated: 2022/03/20 00:10:33 by junoh            ###   ########.fr       */
+/*   Updated: 2022/03/21 18:16:51 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	ft_numsize_count(long long num, int flag)
 	base = flag;
 	if (num == 0)
 		return (1);
-	else if (num == -2147483648)
-		return (11);
 	read_size = 0;
 	if (num < 0)
 	{

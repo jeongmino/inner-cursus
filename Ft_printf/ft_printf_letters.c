@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:27:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/03/20 00:12:25 by junoh            ###   ########.fr       */
+/*   Updated: 2022/03/23 16:34:38 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 
 int	ft_print_c(va_list *ap)
 {
-	char	c;
-	int		flag;
+	int	c;
 
-	flag = va_arg(*ap, int);
-	if (ft_isascii(flag))
-	{
-		c = (char)flag;
-		ft_putchar_fd(c, 1);
-	}
-	else
-		ft_putchar_fd('0', 1);
+	c = va_arg(*ap, int);
+	ft_putchar_fd((unsigned char)c, 1);
 	return (1);
 }
 
