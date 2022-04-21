@@ -6,7 +6,7 @@
 /*   By: wonkim <wonkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:01:49 by chpark            #+#    #+#             */
-/*   Updated: 2022/04/20 17:00:25 by ojeongmin        ###   ########.fr       */
+/*   Updated: 2022/04/21 15:30:03 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	*make_index_sort(int *arr, int size, char **str)
 	if (copy_arr == NULL || !check_dup_arr(arr, size))
 	{
 		free(arr);
-		exit(ft_put_err(NULL, "Error", str,1));
+		exit(ft_put_err(NULL, "Error", str, 1));
 	}
 	copy_arr = make_copy_arr(copy_arr, arr, size);
 	i = ft_sort_int_arr(copy_arr, size);

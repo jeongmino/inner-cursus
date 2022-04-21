@@ -6,7 +6,7 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:36:14 by chpark            #+#    #+#             */
-/*   Updated: 2022/04/20 17:48:24 by ojeongmin        ###   ########.fr       */
+/*   Updated: 2022/04/21 15:29:31 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,16 @@
 
 int	three_sort(t_stacks *stack)
 {
-	int	*temp;
-
-	temp = stack->stack_a->arr;
-	if (temp[0] == 1)
+	if (stack->stack_a->arr[0] == 1)
 	{
-		if (temp[1] == 0)
+		if (stack->stack_a->arr[1] == 0)
 			sa(stack);
 		else
 			rra(stack);
 	}
-	else if (temp[0] == 2)
+	else if (stack->stack_a->arr[0] == 2)
 	{
-		if (temp[1] == 0)
+		if (stack->stack_a->arr[1] == 0)
 			ra(stack);
 		else
 		{

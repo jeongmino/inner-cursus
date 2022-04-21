@@ -36,7 +36,7 @@ MKDIR		=	$(shell mkdir $(OBJ_D) 2> /dev/null) \
 				$(shell mkdir $(addprefix $(OBJ_D), $(SRC_UTILD)) 2> /dev/null) \
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g
 HEADER	= ./header/
 
 AR = ar -rcs

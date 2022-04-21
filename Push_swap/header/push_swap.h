@@ -6,7 +6,7 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:02:34 by chpark            #+#    #+#             */
-/*   Updated: 2022/04/20 17:13:18 by ojeongmin        ###   ########.fr       */
+/*   Updated: 2022/04/21 15:05:12 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_stacks
 int			main(int ac, char **av);
 void		init_stack_a(t_stacks *stacks, int *src_arr, int size, char **str);
 void		init_stack_b(t_stacks *stacks, int size, char **str);
-int			free_stack(t_stacks *stacks);
 
 /*
 ** setup.c
