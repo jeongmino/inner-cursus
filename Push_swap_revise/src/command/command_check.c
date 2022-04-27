@@ -6,7 +6,7 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 20:18:26 by chpark            #+#    #+#             */
-/*   Updated: 2022/04/26 17:20:53 by ojeongmin        ###   ########.fr       */
+/*   Updated: 2022/04/06 18:57:05 by chpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,6 @@ int	check_command(t_stacks *stack, char *command)
 		else
 			return (check_command_rr(stack, command, n));
 	}
+	else
+		return (-1);
 }

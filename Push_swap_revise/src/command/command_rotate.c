@@ -6,7 +6,7 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 17:50:05 by chpark            #+#    #+#             */
-/*   Updated: 2022/04/26 18:21:08 by ojeongmin        ###   ########.fr       */
+/*   Updated: 2022/03/30 17:50:55 by chpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,15 @@ int	rotate_mecro(t_list *a)
 	return (1);
 }
 
-void	ra(t_stacks *stack)
+int	ra(t_stacks *stack)
 {
 	int	flag;
 
 	flag = check_command(stack, "ra");
+	if (flag == -1)
+		exit (write(1, "error", 5));
+	if (flag == 0)
+		return (1);
 	else if (flag == 1)
 	{
 		if (rotate_mecro(stack->stack_a) == 1)
@@ -55,11 +59,15 @@ void	ra(t_stacks *stack)
 		return (0);
 }
 
-void	rb(t_stacks *stack)
+int	rb(t_stacks *stack)
 {
 	int	flag;
 
 	flag = check_command(stack, "rb");
+	if (flag == -1)
+		exit (write(1, "error", 5));
+	if (flag == 0)
+		return (1);
 	else if (flag == 1)
 	{
 		if (rotate_mecro(stack->stack_b) == 1)
