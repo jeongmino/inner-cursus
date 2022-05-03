@@ -6,12 +6,11 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:11:26 by chpark            #+#    #+#             */
-/*   Updated: 2022/04/20 17:17:22 by ojeongmin        ###   ########.fr       */
+/*   Updated: 2022/05/02 17:50:31 by ojeongmin        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/push_swap.h"
-
 static int	ft_sort_fives(t_stacks *stack, int size)
 {
 	if (size == 2)

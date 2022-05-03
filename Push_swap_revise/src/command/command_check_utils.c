@@ -6,7 +6,7 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 20:18:26 by chpark            #+#    #+#             */
-/*   Updated: 2022/04/27 20:13:45 by junoh            ###   ########.fr       */
+/*   Updated: 2022/05/02 18:55:32 by ojeongmin        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_command_p(t_stacks *stack, char *command, int n)
 }
 
 int	check_command_ra(t_stacks *stack, int n)
-{
+{	/*
 	if ((stack->command[n - 3] == 'r') && \
 		(stack->command[n - 2] == 'b'))
 		return (2);
@@ -71,11 +71,15 @@ int	check_command_ra(t_stacks *stack, int n)
 	else if (stack->command[n - 4] != 'r')
 		return (1);
 	else
-		return (-1);
+		return (-1); */
+	if ((stack->command[n - 3] == 'r') && (stack->command[n - 2] != 'a'))
+		return (2);
+	else
+		return (1);
 }
 
 int	check_command_rb(t_stacks *stack, int n)
-{
+{/*
 	if ((stack->command[n - 3] == 'r') && \
 		(stack->command[n - 2] == 'a'))
 		return (2);
@@ -90,19 +94,25 @@ int	check_command_rb(t_stacks *stack, int n)
 		return (1);
 	else
 		return (-1);
+	*/
+	if ((stack->command[n - 3] == 'r') && (stack->command[n - 2] != 'b'))
+		return (2);
+	else
+		return (1);
 }
 
 int	check_command_rr(t_stacks *stack, char *command, int n)
-{
+{ /*
 	if ((stack->command[n - 2] == command[2]) \
 		|| (stack->command[n - 2] == 'r'))
 	{
 		if (stack->command[n - 3] == 'r')
+			printf("this?\n");
 			return (0);
 		else
 			return (1);
 	}
-	else if (stack->command[n - 2] != command [2])
+	else if (stack->command[n - 2] != command[2])
 		return (1);
 	else if (stack->command[n - 2] != command[2])
 	{
@@ -112,5 +122,10 @@ int	check_command_rr(t_stacks *stack, char *command, int n)
 			return (1);
 	}
 	else
-		return (-1);
+		return (-1); */
+	if ((stack->command[n - 4] == 'r') && (stack->command[n - 3] == 'r') \
+		&& (stack->command[n - 2] != command[2]))
+		return (2);
+	else
+		return (1);
 }

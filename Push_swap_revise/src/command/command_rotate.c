@@ -6,7 +6,7 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 17:50:05 by chpark            #+#    #+#             */
-/*   Updated: 2022/03/30 17:50:55 by chpark           ###   ########.fr       */
+/*   Updated: 2022/05/02 18:53:10 by ojeongmin        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int	ra(t_stacks *stack)
 	int	flag;
 
 	flag = check_command(stack, "ra");
-	if (flag == -1)
-		exit (write(1, "error", 5));
 	if (flag == 0)
 		return (1);
 	else if (flag == 1)

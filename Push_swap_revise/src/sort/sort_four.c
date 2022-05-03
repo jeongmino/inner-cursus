@@ -6,12 +6,11 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:20:16 by chpark            #+#    #+#             */
-/*   Updated: 2022/04/09 15:48:05 by ojeongmin        ###   ########.fr       */
+/*   Updated: 2022/05/03 13:34:03 by ojeongmin        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/push_swap.h"
-
 static int	find_min(t_list *a)
 {
 	int	min;

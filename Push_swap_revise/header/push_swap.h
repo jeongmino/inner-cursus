@@ -6,7 +6,7 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:02:34 by chpark            #+#    #+#             */
-/*   Updated: 2022/04/21 15:05:12 by junoh            ###   ########.fr       */
+/*   Updated: 2022/05/03 12:36:41 by ojeongmin        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
+#include <stdio.h>
 typedef struct s_list
 {
 	int	*arr;

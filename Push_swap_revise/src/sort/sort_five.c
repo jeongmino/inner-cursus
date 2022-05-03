@@ -6,15 +6,14 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 13:47:11 by chpark            #+#    #+#             */
-/*   Updated: 2022/04/21 15:40:56 by junoh            ###   ########.fr       */
+/*   Updated: 2022/05/03 12:38:06 by ojeongmin        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/push_swap.h"
-
 static int	five_sort_sub(t_stacks *stack, int count)
 {
-	if (count < 2)
+	if (count <= 2 )
 	{
 		while (count-- > 0)
 			ra(stack);

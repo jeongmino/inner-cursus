@@ -6,7 +6,7 @@
 /*   By: chpark <chpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 19:28:00 by chpark            #+#    #+#             */
-/*   Updated: 2022/04/09 17:45:48 by junoh            ###   ########.fr       */
+/*   Updated: 2022/05/02 18:41:38 by ojeongmin        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	reverse_rotate_mecro(t_list *s)
 
 int	rra(t_stacks *stack)
 {
+	/*
 	int	n;
 
 	n = check_command(stack, "rra");
@@ -54,10 +55,22 @@ int	rra(t_stacks *stack)
 	}
 	else
 		return (0);
+	*/
+	int	flag;
+
+	flag = check_command(stack, "rra");
+	if (flag == 1)
+	{
+		reverse_rotate_mecro(stack->stack_a);
+		stack->command = ft_strjoin_push_swap(stack->command, "rra\n");
+	}
+	else if (flag == 2)
+		rrr(stack);
+	return (0);
 }
 
 int	rrb(t_stacks *stack)
-{
+{	/*
 	int	n;
 
 	n = check_command(stack, "rrb");
@@ -79,7 +92,18 @@ int	rrb(t_stacks *stack)
 		return (1);
 	}
 	else
-		return (0);
+		return (0); */
+	int	flag;
+
+	flag = check_command(stack, "rrb");
+	if (flag == 1)
+	{
+		reverse_rotate_mecro(stack->stack_b);
+		stack->command = ft_strjoin_push_swap(stack->command, "rrb\n");
+	}
+	else if (flag == 2)
+		rrr(stack);
+	return (0);
 }
 
 int	rrr(t_stacks *stack)
