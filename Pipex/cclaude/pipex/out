@@ -1,0 +1,25 @@
+4c4
+< /*   bonus.c                                            :+:      :+:    :+:   */
+---
+> /*   pipex.c                                            :+:      :+:    :+:   */
+9c9
+< /*   Updated: 2021/06/21 17:21:58 by cclaude          ###   ########.fr       */
+---
+> /*   Updated: 2021/06/21 17:15:18 by cclaude          ###   ########.fr       */
+104d103
+< 	int	i;
+106,107c105
+< 	i = 3;
+< 	if (ac >= 5)
+---
+> 	if (ac == 5)
+110c108
+< 		fdout = openfile(av[ac - 1], OUTFILE);
+---
+> 		fdout = openfile(av[4], OUTFILE);
+114,116c112
+< 		while (i < ac - 2)
+< 			redir(av[i++], env, 1);
+< 		exec(av[i], env);
+---
+> 		exec(av[3], env);
