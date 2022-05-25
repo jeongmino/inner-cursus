@@ -29,6 +29,25 @@ static	int	ft_count(char const *s, char c)
 	return (cnt);
 }
 
+static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t		src_len;
+	size_t		idx;
+
+	src_len = 0;
+	while (src[src_len])
+		src_len++;
+	idx = 0;
+	while (idx + 1 < dstsize && idx < src_len)
+	{
+		dst[idx] = src[idx];
+		idx++;
+	}
+	if (dstsize > 0)
+		dst[idx] = '\0';
+	return (src_len);
+}
+
 static	void	*ft_strfree(char **strs, int stridx)
 {
 	int	i;

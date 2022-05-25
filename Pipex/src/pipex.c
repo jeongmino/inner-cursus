@@ -28,31 +28,38 @@ int	open_file(char *file, int flag)
 	return (open(file, O_TRUNC | O_CREAT | O_RDWR, 0000644));
 }
 
-char	*get_path(char **envp, char **cmd_args)
+char	*get_path(char **envp, char *cmd)
 {
 	char	*path;
 	char	*real_path;
+	char	*test_path;
 	int		i;
 
-	if (ft_strchr(cmd_args[0], '/') == 0)
-		return (cmd_args[0])
+	if (ft_strichr(cmd, '/') == 0)
+		return (cmd);
 	i = 0;
-	while (envp[i] != NULL && (ft_strncmp(envp[i], "PATH=", 5))
+	while (envp[i] != NULL && (ft_strncmp(envp[i], "PATH=", 5)))
 		i++;
-	path = ft_strdup(path, envp[i]);
+	path = ft_strndup(envp[i] + 5, ft_strlen(envp[i]) - 5);
 	while (path != NULL)
 	{
-		
+		real_path = ft_strndup(path, ft_strichr(path, ';'));
+		real_path = ft_path_join(real_path, cmd);
+		if (access(real_path, F_OK) == 0)
+			return (real_path);
+		free(real_path);
+		path += ft_strichr(path, ';') + 1;
 	}
+	return (cmd);
 }
 
-void	execute_cmd(char **cmd, char **envp)
+void	execute_cmd(char *cmd, char **envp)
 {
-	char	**excute_path;
+	char	*excute_path;
 	char	**args;
 
 	args = ft_split(cmd, ' ');
-	excute_path = (envp, args);
+	excute_path = get_path(envp, args[0]);
 	execve(excute_path, args, 0);
 	write(STDERR_FILENO, "pipex: ", 7);
 	write(STDERR_FILENO, cmd, ft_strlen(cmd));
@@ -60,7 +67,7 @@ void	execute_cmd(char **cmd, char **envp)
 	exit(127);
 }
 
-void	make_redir(char **cmd, char **envp)
+void	make_redir(char *cmd, char **envp)
 {
 	int		pipefd[2];
 	pid_t	pid;
@@ -70,14 +77,14 @@ void	make_redir(char **cmd, char **envp)
 	if (pid != 0) // parent's precess
 	{
 		close(pipefd[1]);
-		dup2(pipefd[0], STDIN_FIELNO);
+		dup2(pipefd[0], STDIN_FILENO);
 		waitpid(pid, NULL, 0);
 	}
 	else
 	{
 		close(pipefd[0]);
 		dup2(pipefd[1], STDOUT_FILENO);
-		exec(cmd, envp);
+		execute_cmd(cmd, envp);
 	}
 	return ;
 }
@@ -96,7 +103,7 @@ int	main(int argc, char **argv, char **envp)
 		dup2(fdin, STDIN_FILENO); // infile의 fd가 표준 입력으로 바꿈
 		dup2(fdout, STDOUT_FILENO); // outfile의 fd가 표준 출력으로 바꿈
 		make_redir(argv[2], envp);
-		exec(argv[3], envp);
+		execute_cmd(argv[3], envp);
 	}
 	return (0);
 }

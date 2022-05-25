@@ -18,6 +18,26 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 
-//# define    
+int	    open_file(char *file, int flag);
+
+char	*get_path(char **envp, char *cmd);
+
+void	execute_cmd(char *cmd, char **envp);
+
+void	make_redir(char *cmd, char **envp);
+
+int	    main(int argc, char **argv, char **envp);
+
+int	    ft_strlen(char *str);
+
+int	    ft_strichr(const char *s, int c);
+
+int	    ft_strncmp(const char *s1, const char *s2, size_t n);
+
+char	*ft_strndup(const char *s, int cpy_len);
+
+char	*ft_path_join(char *left_string_buf, char *read_buf);
+
+char	**ft_split(char const *s, char c);
 
 #endif
