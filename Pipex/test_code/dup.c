@@ -1,13 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 int	main(void)
 {
-	int	fd;
+	char *argv[2];
+	int	fdin;
+	int	fdout;
 
-	fd = 4;
-	int	arr[fd];
-
-	printf("sizeof : %lu\n", sizeof(arr));
-	return (0);
+	fdin = open("input", O_RDONLY);
+	fdout = open("output", O_WRONLY);
+	dup2(fdout, STDOUT_FILENO);
+	dup2(fdin, STDIN_FILENO);
+	argv[0] = "cat";
+	argv[1] = 0;
+	execve("/bin/cat", argv, 0);
 }
+
