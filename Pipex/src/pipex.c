@@ -34,11 +34,11 @@ char	*get_path(char **envp, char *cmd)
 	char	*real_path;
 	int		i;
 
-	if (ft_strichr(cmd, '/') == 0)
-		return (cmd);
 	i = 0;
 	while (envp[i] != NULL && (ft_strncmp(envp[i], "PATH=", 5)))
 		i++;
+	if (envp[i] == NULL)
+		exit(1);
 	path = ft_strndup(envp[i] + 5, ft_strlen(envp[i]) - 5);
 	while (path != NULL)
 	{
@@ -58,8 +58,11 @@ void	execute_cmd(char *cmd, char **envp)
 	char	**args;
 
 	args = ft_split(cmd, ' ');
-	excute_path = get_path(envp, args[0]);
-	execve(excute_path, args, 0);
+	if (args[0][0] == '/' )
+		excute_path = args[0];
+	else
+		excute_path = get_path(envp, args[0]);
+	execve(excute_path, args, envp);
 	write(STDERR_FILENO, "pipex: ", 7);
 	write(STDERR_FILENO, cmd, ft_strlen(cmd));
 	write(STDERR_FILENO, ": command not found\n", 20);
@@ -93,7 +96,7 @@ int	main(int argc, char **argv, char **envp)
 	int	fdin;
 	int	fdout;
 
-	if (argc >= 5)
+	if (argc == 5)
 	{
 		fdin = open_file(argv[1], 0);
 		if (fdin == STDIN_FILENO)
@@ -103,7 +106,7 @@ int	main(int argc, char **argv, char **envp)
 		dup2(fdout, STDOUT_FILENO); // outfile의 fd가 표준 출력으로 바꿈
 		make_redir(argv[2], envp);
 		execute_cmd(argv[3], envp);
-		system("leaks a.out");
+		system("leaks pipex");
 	}
 	return (0);
 }
