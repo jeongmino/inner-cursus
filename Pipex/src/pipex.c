@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:23:04 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/25 00:43:50 by junoh            ###   ########.fr       */
+/*   Updated: 2022/05/26 12:46:10 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*get_path(char **envp, char *cmd)
 {
 	char	*path;
 	char	*real_path;
-	char	*test_path;
 	int		i;
 
 	if (ft_strichr(cmd, '/') == 0)
@@ -43,12 +42,12 @@ char	*get_path(char **envp, char *cmd)
 	path = ft_strndup(envp[i] + 5, ft_strlen(envp[i]) - 5);
 	while (path != NULL)
 	{
-		real_path = ft_strndup(path, ft_strichr(path, ';'));
+		real_path = ft_strndup(path, ft_strichr(path, ':'));
 		real_path = ft_path_join(real_path, cmd);
 		if (access(real_path, F_OK) == 0)
 			return (real_path);
 		free(real_path);
-		path += ft_strichr(path, ';') + 1;
+		path += ft_strichr(path, ':') + 1;
 	}
 	return (cmd);
 }
@@ -94,7 +93,7 @@ int	main(int argc, char **argv, char **envp)
 	int	fdin;
 	int	fdout;
 
-	if (argc == 5)
+	if (argc >= 5)
 	{
 		fdin = open_file(argv[1], 0);
 		if (fdin == STDIN_FILENO)
@@ -104,6 +103,7 @@ int	main(int argc, char **argv, char **envp)
 		dup2(fdout, STDOUT_FILENO); // outfile의 fd가 표준 출력으로 바꿈
 		make_redir(argv[2], envp);
 		execute_cmd(argv[3], envp);
+		system("leaks a.out");
 	}
 	return (0);
 }

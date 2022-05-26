@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:28:38 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/25 00:29:29 by junoh            ###   ########.fr       */
+/*   Updated: 2022/05/26 13:04:10 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 char	*ft_strndup(const char *s, int cpy_len)
 {
 	char	*tmp;
-	
+	int		len;
+
+	len = cpy_len;
 	tmp = malloc(sizeof(char) * (cpy_len + 1));
 	if (tmp == NULL)
 		return (NULL);
@@ -65,7 +67,7 @@ char	*ft_strndup(const char *s, int cpy_len)
 		s++;
 	}
 	*tmp = '\0';
-	return (tmp - cpy_len);
+	return (tmp - len);
 }
 
 char	*ft_path_join(char *left_string_buf, char *read_buf)
@@ -88,7 +90,7 @@ char	*ft_path_join(char *left_string_buf, char *read_buf)
 	str[idx++] = '/';
 	while (read_buf[jdx] != '\0')
 		str[idx++] = read_buf[jdx++];
-	str[ft_strlen(left_string_buf) + ft_strlen(read_buf)] = '\0';
+	str[ft_strlen(left_string_buf) + ft_strlen(read_buf) + 1] = '\0';
 	free(left_string_buf);
 	return (str);
 }
