@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:23:04 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/27 15:17:52 by junoh            ###   ########.fr       */
+/*   Updated: 2022/05/27 15:48:24 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	main(int argc, char **argv, char **envp)
 	int	fdin;
 	int	fdout;
 
-	if (argc == 5)
+	if (argc >= 5)
 	{
 		fdin = open_file(argv[1], 0);
 		if (fdin == STDIN_FILENO)
@@ -108,6 +108,7 @@ int	main(int argc, char **argv, char **envp)
 		dup2(fdin, STDIN_FILENO); // infile의 fd가 표준 입력으로 바꿈
 		dup2(fdout, STDOUT_FILENO); // outfile의 fd가 표준 출력으로 바꿈
 		make_redir(argv[2], envp);
+		
 		execute_cmd(argv[3], envp);
 		system("leaks pipex");
 	}
