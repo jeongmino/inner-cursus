@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:23:04 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/27 15:17:52 by junoh            ###   ########.fr       */
+/*   Updated: 2022/05/28 19:16:45 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ int	main(int argc, char **argv, char **envp)
 	if (argc == 5)
 	{
 		fdin = open_file(argv[1], 0);
-		if (fdin == STDIN_FILENO)
-			return (0);
 		fdout = open_file(argv[4], 1);
 		dup2(fdin, STDIN_FILENO); // infile의 fd가 표준 입력으로 바꿈
 		dup2(fdout, STDOUT_FILENO); // outfile의 fd가 표준 출력으로 바꿈

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:24:57 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/27 14:59:29 by junoh            ###   ########.fr       */
+/*   Updated: 2022/05/28 19:20:01 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+
+typedef struct s_info
+{
+	int	fdin;
+	int	fdout;
+    int *fd_arr;
+}				t_info;
 
 int	    open_file(char *file, int flag);
 

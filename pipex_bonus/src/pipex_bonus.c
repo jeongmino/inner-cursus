@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:23:04 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/27 18:02:33 by junoh            ###   ########.fr       */
+/*   Updated: 2022/05/28 19:5 by4 junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	execute_cmd(char *cmd, char **envp)
 	exit(127);
 }
 
-void	make_redir(char *cmd, char **envp)
+void	make_redir(char *cmd, char **envp, int *pipe_arr, int flag)
 {
 	int		pipefd[2];
 	pid_t	pid;
@@ -81,14 +81,17 @@ void	make_redir(char *cmd, char **envp)
 	pid = fork();
 	if (pid != 0) // parent's precess
 	{
+		pipe_arr[1] = pipefd[1];
 		close(pipefd[1]);
-		dup2(pipefd[0], STDIN_FILENO);
+		if (flag == STDIN_FILENO)
+			dup2(pipefd[0], STDIN_FILENO);
+		else
+			dup2(pipefd[0], )
 		waitpid(pid, NULL, WNOHANG);
 	}
 	else
 	{
-		close(pipefd[0]);
-		dup2(pipefd[1], STDOUT_FILENO);
+		dup2(pipefd[1], STDOUT_FILENO);	
 		execute_cmd(cmd, envp);
 	}
 	return ;
@@ -98,19 +101,23 @@ int	main(int argc, char **argv, char **envp)
 {
 	int	fdin;
 	int	fdout;
+	int	*pipe_arr;
 	int	i;
-
+	
 	if (argc >= 5)
-	{;
+	{
 		fdin = open_file(argv[1], 0);
-		if (fdin == STDIN_FILENO)
+		pipe_arr = (*int)malloc(2 * sizeof(int));
+		if (pipe_arr == NULL)
 			return (0);
-		fdout = open_file(argv[4], 1);
+		pipe(pipe_arr);
 		dup2(fdin, STDIN_FILENO); // infile의 fd가 표준 입력으로 바꿈
-		dup2(fdout, STDOUT_FILENO); // outfile의 fd가 표준 출력으로 바꿈
-		i = 2;
+		make_redir(argv[2], envp, pipe_arr, 0)
+		i = 3;
 		while (i < argc - 2)
-			make_redir(argv[i++], envp);
+			make_redir(argv[i++], envp, pipe_arr, 1);
+		fdout = open_file(argv[i], 1);
+		dup2(fdout, STDOUT_FILENO); // outfile의 fd가 표준 출력으로 바꿈
 		execute_cmd(argv[i], envp);
 		system("leaks pipex");
 	}
