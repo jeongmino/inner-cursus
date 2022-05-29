@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*   pipex_openfile.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/29 15:35:11 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/29 20:18:38 by junoh            ###   ########.fr       */
+/*   Created: 2022/05/29 19:56:39 by junoh             #+#    #+#             */
+/*   Updated: 2022/05/29 19:57:02 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
 
-int main(int ac, char **av, char **env)
+int	open_file(char *file, int flag)
 {
-	t_info  info;
-	
-	if (ac < 5)
-		write(STDERR_FILENO, "pipex: invaild arguments number\n", 32);	 
-	else
+	if (flag == 0)
 	{
-		info.fdin = open_file(av[1], STDIN_FILENO);
-		info.argc = ac;
-		info.argv = av;
-		info.envp = env;
-		ft_redir(&info); 
-		info.fdout = open_file(av[ac - 1], STDOUT_FILENO);
-		dup2(info.fdout, STDOUT_FILENO);
-		execute_cmd(av[ac - 2], env);
+		if (access(file, F_OK != 0))
+		{
+			write(STDERR_FILENO, "pipex: ", 7);
+			write(STDERR_FILENO, file, ft_strlen(file));
+			write(STDERR_FILENO, ": No such file or directory\n", 28);
+			return (0);
+		}
+		return (open(file, O_RDONLY));
 	}
-	return (0);
+	return (open(file, O_TRUNC | O_CREAT | O_RDWR, 0000644));
 }
