@@ -5,123 +5,103 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 23:23:04 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/28 19:5 by4 junoh            ###   ########.fr       */
+/*   Created: 2022/05/29 15:35:11 by junoh             #+#    #+#             */
+/*   Updated: 2022/05/29 19:40:31 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/pipex.h"
+#include "../header/pipex_bonus.h"
 
-int	open_file(char *file, int flag)
+void    ft_parent_proc(t_info *info, int index)
 {
-	if (flag == 0)
-	{
-		if (access(file, F_OK != 0))
-		{
-			write(STDERR_FILENO, "pipex: ", 7);
-			write(STDERR_FILENO, file, ft_strlen(file));
-			write(STDERR_FILENO, ": No such file or directory\n", 28);
-			return (0);
-		}
-		return (open(file, O_RDONLY));
-	}
-	return (open(file, O_TRUNC | O_CREAT | O_RDWR, 0000644));
+   if (info->flag == 1)
+            {
+                close(info->pipe_alpha[1]); // 1st parent's proc doesn't use write of pipe     
+                close(info->pipe_beta[0]);
+            }
+            else
+            {
+                close(info->pipe_beta[1]);
+                close(info->pipe_alpha[0]);
+            }
+            waitpid(info->pid, NULL, WNOHANG); 
 }
 
-char	*get_path(char **envp, char *cmd)
+void    ft_make_pipe(t_info *info, int index)
 {
-	char	*path;
-	char	**real_path;
-	int		i;
-
-	i = 0;
-	while (envp[i] != NULL && (ft_strncmp(envp[i], "PATH=", 5)))
-		i++;
-	if (envp[i] == NULL)
-		exit(1);
-	path = ft_strndup(envp[i] + 5, ft_strlen(envp[i]) - 5);
-	real_path = ft_split(path, ':');
-	i = 0;
-	while (real_path[i] != NULL)
-	{
-		path = ft_path_join(real_path[i++], cmd);
-		if (access(path, F_OK) == 0)
-		{
-			ft_frees(real_path);
-			return (path);
-		}
-	}
-	ft_frees(real_path);
-	return (cmd);
+    if (index % 2 == 0)
+        pipe(info->pipe_alpha);
+    else
+        pipe(info->pipe_beta);
+    return ;
 }
 
-void	execute_cmd(char *cmd, char **envp)
+void    ft_redir(t_info *info)
 {
-	char	*excute_path;
-	char	**args;
+    int i;
 
-	args = ft_split(cmd, ' ');
-	if (args[0][0] == '/' )
-		excute_path = args[0];
-	else
-		excute_path = get_path(envp, args[0]);
-	execve(excute_path, args, envp);
-	write(STDERR_FILENO, "pipex: ", 7);
-	write(STDERR_FILENO, cmd, ft_strlen(cmd));
-	write(STDERR_FILENO, ": command not found\n", 20);
-	exit(127);
+    dup2(info->fdin, STDIN_FILENO);
+    i = 2;
+    while (i < info->argc - 2)
+    {
+        ft_make_pipe(info, i);
+        info->pid = fork();
+        if (!info->pid) // Parent's process
+        {
+            if (info->flag == 1)
+            {
+                close(info->pipe_alpha[1]); // 1st parent's proc doesn't use write of pipe     
+                close(info->pipe_beta[0]);
+            }
+            else
+            {
+                close(info->pipe_beta[1]);
+                close(info->pipe_alpha[0]);
+            }
+            waitpid(info->pid, NULL, WNOHANG);
+        }
+        else
+        {
+            if (info->flag == 1) // if the number of cmd is even
+            {
+                close(info->pipe_alpha[0]);
+                if (i != 2)
+                    dup2(info->pipe_beta[0], STDIN_FILENO);
+                dup2(info->pipe_alpha[1], STDOUT_FILENO);
+                execute_cmd(info->argv[i], info->envp);
+            }
+            else
+            {
+                close(info->pipe_beta[0]);
+                dup2(info->pipe_alpha[0], STDIN_FILENO);
+                dup2(info->pipe_beta[1], STDOUT_FILENO);
+                execute_cmd(info->argv[i], info->envp)
+            }
+        }
+        info->flag *= -1;
+        i++;    
+    }
 }
 
-void	make_redir(char *cmd, char **envp, int *pipe_arr, int flag)
-{
-	int		pipefd[2];
-	pid_t	pid;
 
-	pipe(pipefd);
-	pid = fork();
-	if (pid != 0) // parent's precess
-	{
-		pipe_arr[1] = pipefd[1];
-		close(pipefd[1]);
-		if (flag == STDIN_FILENO)
-			dup2(pipefd[0], STDIN_FILENO);
-		else
-			dup2(pipefd[0], )
-		waitpid(pid, NULL, WNOHANG);
-	}
-	else
-	{
-		dup2(pipefd[1], STDOUT_FILENO);	
-		execute_cmd(cmd, envp);
-	}
-	return ;
-}
-
-int	main(int argc, char **argv, char **envp)
+int main(int ac, char **av, char **env)
 {
-	int	fdin;
-	int	fdout;
-	int	*pipe_arr;
-	int	i;
-	
-	if (argc >= 5)
-	{
-		fdin = open_file(argv[1], 0);
-		pipe_arr = (*int)malloc(2 * sizeof(int));
-		if (pipe_arr == NULL)
-			return (0);
-		pipe(pipe_arr);
-		dup2(fdin, STDIN_FILENO); // infile의 fd가 표준 입력으로 바꿈
-		make_redir(argv[2], envp, pipe_arr, 0)
-		i = 3;
-		while (i < argc - 2)
-			make_redir(argv[i++], envp, pipe_arr, 1);
-		fdout = open_file(argv[i], 1);
-		dup2(fdout, STDOUT_FILENO); // outfile의 fd가 표준 출력으로 바꿈
-		execute_cmd(argv[i], envp);
-		system("leaks pipex");
-	}
-	else
-		write(STDERR_FILENO, "pipex: invaild arguments number\n", 32);	
-	return (0);
+    t_info  info;
+    int     i;
+    
+    if (argc < 5)
+        write(STDERR_FILENO, "pipex: invaild arguments number\n", 32);	 
+    else
+    {
+        info.fdin = open_file(argv[1], STDIN_FILENO);
+        info.argc = ac;
+        info.argv = av;
+        info.envp = env;
+        ft_redir(&info); 
+        fdout = open_file(av[ac - 1], STDOUT_FILENO);
+        dup2(fdout, STDOUT_FILENO);
+        execute_cmd(av[ac - 2], envp);
+        
+    }
+    return (0);
 }

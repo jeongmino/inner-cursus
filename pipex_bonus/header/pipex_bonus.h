@@ -6,12 +6,12 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:24:57 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/28 19:20:01 by junoh            ###   ########.fr       */
+/*   Updated: 2022/05/29 17:40:02 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -20,9 +20,15 @@
 
 typedef struct s_info
 {
-	int	fdin;
-	int	fdout;
-    int *fd_arr;
+	int		fdin;
+	int		fdout;
+    int		argc;
+	char	**argv;
+	char	**envp;
+	int		pipe_alpha[2];
+	int		pipe_beta[2];
+	pid_t	pid;
+	int		flag;
 }				t_info;
 
 int	    open_file(char *file, int flag);
