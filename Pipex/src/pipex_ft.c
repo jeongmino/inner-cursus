@@ -1,28 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_parent_proc.c                                :+:      :+:    :+:   */
+/*   pipex_ft.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/29 19:51:14 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/29 20:19:27 by junoh            ###   ########.fr       */
+/*   Created: 2022/05/30 20:34:11 by junoh             #+#    #+#             */
+/*   Updated: 2022/05/30 20:54:57 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
 
-void    ft_parent_proc(t_info *info)
+pid_t   ft_fork(void)
 {
-	if (info->flag == 1)
-	{
-		close(info->pipe_alpha[1]); // 1st parent's proc doesn't use write of pipe     
-		close(info->pipe_beta[0]);
-	}
-	else
-	{
-		close(info->pipe_beta[1]);
-		close(info->pipe_alpha[0]);
-	}
-    return ;
+    pid_t ret_pid;
+    
+    ret_pid = fork();
+    if (ret_pid < 0)
+        exit(127);
+    return (ret_pid);
+}
+
+int ft_dup2(int fd1, int fd2)
+{
+    int ret_value;
+
+    ret_value = dup2(fd1, fd2);
+    if (ret_value < 0)
+        exit(127);
+    return (ret_value);
+}
+
+int ft_close(int fd)
+{
+    int ret_value;
+
+    ret_value = close(fd);
+    if (ret_value < 0)
+        exit(127);
+    return (ret_value);
 }

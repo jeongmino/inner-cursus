@@ -6,22 +6,16 @@
 #    By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 13:16:22 by junoh             #+#    #+#              #
-#    Updated: 2022/05/29 20:41:42 by junoh            ###   ########.fr        #
+#    Updated: 2022/05/27 15:37:25 by junoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= pipex
 
-SRCS 			=	src/pipex_bonus.c\
-					src/pipex_child_proc.c\
-					src/pipex_exec.c\
-					src/pipex_make_pipe.c\
-					src/pipex_openfile.c\
-					src/pipex_redir.c\
+SRCS 			=	src/pipex.c\
 					src/pipex_util.c\
 					src/pipex_split.c\
 					src/pipex_free.c\
-					
 
 OBJS			= $(SRCS:.c=.o)
 
