@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:55:12 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/30 20:53:47 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/01 21:50:34 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void    ft_redir(t_info *info)
 	while (i < info->argc - 2)
 	{
 		ft_make_pipe(info, i);
-		info->pid = fork();
+		info->pid = ft_fork();
 		if (info->pid) // Parent's process
 			ft_parent_proc(info, i);
 		else

@@ -50,8 +50,5 @@ void	execute_cmd(char *cmd, char **envp)
 	else
 		excute_path = get_path(envp, args[0]);
 	execve(excute_path, args, envp);
-	write(STDERR_FILENO, "pipex: ", 7);
-	write(STDERR_FILENO, cmd, ft_strlen(cmd));
-	write(STDERR_FILENO, ": command not found\n", 20);
-	exit(127);
+	ft_put_cmd_err(cmd);
 }
