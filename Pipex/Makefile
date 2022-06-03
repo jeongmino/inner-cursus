@@ -6,7 +6,7 @@
 #    By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 13:16:22 by junoh             #+#    #+#              #
-#    Updated: 2022/05/30 20:54:13 by junoh            ###   ########.fr        #
+#    Updated: 2022/06/03 17:56:45 by junoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ SRCS 			=	src/pipex_bonus.c\
 					src/pipex_split.c\
 					src/pipex_free.c\
 					src/pipex_ft.c\
-					
+					src/pipex_put_error.c\
+					src/pipex_here_doc.c\
+					src/pipex_gnl.c\
 
 OBJS			= $(SRCS:.c=.o)
 

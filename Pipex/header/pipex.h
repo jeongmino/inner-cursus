@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 20:18:12 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/31 16:14:52 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/03 18:06:25 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+
+# define BUFFER_SIZE 42
 
 typedef struct s_info
 {
@@ -31,6 +33,7 @@ typedef struct s_info
 	pid_t	pid;
 	int		flag;
 }				t_info;
+
 
 int	    open_file(char *file, int flag);
 
@@ -63,6 +66,12 @@ pid_t   ft_fork(void);
 int 	ft_dup2(int fd1, int fd2);
 
 int 	ft_close(int fd);
+
+char	*get_next_line(int fd);
+
+void    ft_put_cmd_err(char *cmd);
+
+void	ft_here_doc(t_info *info);
 
 char	*get_next_line(int fd);
 
