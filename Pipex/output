@@ -1,8 +1,4 @@
-total 168$
-drwxr-xr-x  28 junoh  2021_seoul    952 Jun  3 16:59 src$
-drwxr-xr-x  11 junoh  2021_seoul    374 May 27 16:47 test_code$
-drwxr-xr-x   4 junoh  2021_seoul    136 May 29 20:17 header$
--rwxr-xr-x   1 junoh  2021_seoul  74792 Jun  3 16:59 pipex$
--rw-r--r--   1 junoh  2021_seoul   1609 Jun  3 16:57 Makefile$
--rw-r--r--   1 junoh  2021_seoul     12 Jun  3 16:59 input$
--rw-r--r--   1 junoh  2021_seoul      0 Jun  3 17:01 output$
+       3
+cat
+cat
+cat

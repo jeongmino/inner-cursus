@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 20:34:11 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/30 20:54:57 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/07 16:51:06 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ pid_t   ft_fork(void)
     pid_t ret_pid;
     
     ret_pid = fork();
-    if (ret_pid < 0)
+    if (ret_pid == -1)
         exit(127);
     return (ret_pid);
 }

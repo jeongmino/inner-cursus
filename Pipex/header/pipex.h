@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 20:18:12 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/03 18:06:25 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/07 17:21:02 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_info
 	char	**envp;
 	int		pipe_alpha[2];
 	int		pipe_beta[2];
-	int		pipe_here_doc[2];
 	pid_t	pid;
 	int		flag;
 }				t_info;
@@ -71,7 +70,7 @@ char	*get_next_line(int fd);
 
 void    ft_put_cmd_err(char *cmd);
 
-void	ft_here_doc(t_info *info);
+void	ft_here_doc_redir(t_info *info);
 
 char	*get_next_line(int fd);
 

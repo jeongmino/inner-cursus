@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:28:38 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/26 13:04:10 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/07 17:11:35 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ft_strichr(const char *s, int c)
 	int	i;
 
 	i = 0;
+	if (s == NULL)
+		return (0);
 	while (s[i] != '\0')
 	{
 		if (s[i] == c)

@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 15:35:11 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/03 17:52:07 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/07 17:22:07 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int ac, char **av, char **env)
 		info.envp = env;
 		if (!ft_strncmp(av[1], "here_doc", 8))
 		{
-			ft_here_doc(&info);
+			ft_here_doc_redir(&info);
 			return (0);
 		} 
 		info.fdin = open_file(av[1], STDIN_FILENO);

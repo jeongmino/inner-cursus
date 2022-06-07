@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 15:54:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/03 18:05:28 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/07 17:50:23 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	*ft_get_full_line(char *left_string_buf)
 	idx = 0;
 	while (left_string_buf[idx] != '\0' && left_string_buf[idx] != '\n')
 		idx++;
-	str = malloc(sizeof(char) * (idx + 2));
+	str = malloc(sizeof(char) * (idx + 2 + 10));
 	if (str == NULL)
 		return (NULL);
 	jdx = -1;
