@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 15:35:11 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/07 17:22:07 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/08 16:27:07 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int main(int ac, char **av, char **env)
 		ft_redir(&info); 
 		info.fdout = open_file(av[ac - 1], STDOUT_FILENO);
 		ft_dup2(info.fdout, STDOUT_FILENO);
-		close(info.fdout);
 		execute_cmd(av[ac - 2], env);
 	}
 	return (0);

@@ -1,16 +1,20 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pipex_gnl.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 18:11:51 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/08 18:33:24 junoh            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 
-#include "../header/pipex.h"
+#define BUFFER_SIZE 42
+
+int	ft_strlen(char *str)
+{
+	int	len;
+
+	if (str == NULL)
+		return (0);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
 
 char	*some_error(char *str)
 {
@@ -136,4 +140,12 @@ char	*get_next_line(int fd)
 	if (rd == 0 && !rem)
 		return (NULL);
 	return (line);
+}
+
+int main(void)
+{
+    char    *buf;
+
+    buf = get_next_line(STDIN_FILENO);
+    printf("%s", buf);
 }

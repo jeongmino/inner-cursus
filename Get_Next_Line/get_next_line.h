@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 17:25:02 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/25 16:55:47 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/08 17:23:25 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+# define BUFFER_SIZE 42
 
 char	*get_next_line(int fd);
 

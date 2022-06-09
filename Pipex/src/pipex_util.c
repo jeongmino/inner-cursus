@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:28:38 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/07 17:11:35 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/09 12:39:55 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int	ft_strlen(char *str)
 {
 	int	len;
 
+	if (str == NULL)
+		return (0);
 	len = 0;
-	while (*str++)
+	while (str[len])
 		len++;
 	return (len);
 }

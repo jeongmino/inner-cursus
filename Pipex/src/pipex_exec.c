@@ -29,7 +29,7 @@ static char	*get_path(char **envp, char *cmd)
 	while (real_path[i] != NULL)
 	{
 		path = ft_path_join(real_path[i++], cmd);
-		if (access(path, F_OK) == 0)
+		if (access(path, X_OK) == 0)
 		{
 			ft_frees(real_path);
 			return (path);
