@@ -6,21 +6,32 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 15:35:11 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/08 16:27:07 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/09 18:20:58 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
 #include <stdio.h>
 
+static	void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned char	*ptr;
+
+	ptr = (unsigned char *)b;
+	while (len--)
+		*ptr++ = (unsigned char)c;
+	return (b);
+}
+
 int main(int ac, char **av, char **env)
 {
 	t_info  info;
-	
+
 	if (ac < 5)
-		perror("pipex: invaild arguments number\n");
+		ft_error(ARGS_NUM_ERR);
 	else
 	{
+		ft_memset(&info, 0, sizeof(t_info));		
 		info.argc = ac;
 		info.argv = av;
 		info.envp = env;
@@ -31,9 +42,6 @@ int main(int ac, char **av, char **env)
 		} 
 		info.fdin = open_file(av[1], STDIN_FILENO);
 		ft_redir(&info); 
-		info.fdout = open_file(av[ac - 1], STDOUT_FILENO);
-		ft_dup2(info.fdout, STDOUT_FILENO);
-		execute_cmd(av[ac - 2], env);
 	}
 	return (0);
 }

@@ -43,12 +43,15 @@ void	execute_cmd(char *cmd, char **envp)
 {
 	char	*excute_path;
 	char	**args;
+	int		exceve_ret;
 
 	args = ft_split(cmd, ' ');
 	if (args[0][0] == '/')
 		excute_path = args[0];
 	else
 		excute_path = get_path(envp, args[0]);
-	execve(excute_path, args, envp);
-	ft_put_cmd_err(cmd);
+	exceve_ret = execve(excute_path, args, envp);
+	if (exceve_ret == -1)
+		ft_perror(PATH_ERR);
+	ft_perror(EXE_ERR);
 }

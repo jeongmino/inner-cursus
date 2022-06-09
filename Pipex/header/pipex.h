@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 20:18:12 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/07 17:21:02 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/09 18:21:27 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <stdio.h>
 
 # define BUFFER_SIZE 42
 
@@ -31,8 +32,20 @@ typedef struct s_info
 	int		pipe_beta[2];
 	pid_t	pid;
 	int		flag;
+	int		status;
 }				t_info;
 
+enum e_error
+{
+	ARGS_NUM_ERR,
+	PID_ERR,
+	INFILE_OPEN_ERR,
+	OUTFILE_OPEN_ERR,
+	PATH_ERR,
+	EXE_ERR,
+	PIPE_ERR,
+	DUP_ERR
+};
 
 int	    open_file(char *file, int flag);
 
@@ -73,5 +86,9 @@ void    ft_put_cmd_err(char *cmd);
 void	ft_here_doc_redir(t_info *info);
 
 char	*get_next_line(int fd);
+
+void	ft_error(int err);
+
+int		ft_perror(int err);
 
 #endif

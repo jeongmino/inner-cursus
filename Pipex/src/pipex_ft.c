@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 20:34:11 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/09 14:47:46 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/09 19:23:54 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ pid_t   ft_fork(void)
     
     ret_pid = fork();
     if (ret_pid == -1)
-    {
-        perror("fork error");
-        exit(127);
-    }
+        ft_error(PID_ERR);
     return (ret_pid);
 }
 
@@ -31,23 +28,16 @@ int ft_dup2(int fd1, int fd2)
 
     ret_value = dup2(fd1, fd2);
     if (ret_value < 0)
-    {   
-        perror("dup2 error");
-        exit(127);
-    }
-    ft_close(fd1);
+        ft_perror(DUP_ERR);
+    close(fd1);
     return (ret_value);
 }
 
-int ft_close(int fd)
+int	ft_check_stat(int stat)
 {
-    int ret_value;
-
-    ret_value = close(fd);
-    if (ret_value < 0)
-    {
-        exit(127);
-        perror("close error");
-    }
-    return (ret_value);
+	if (WIFEXITED(stat))
+		return (WEXITSTATUS(stat));
+	if (WIFSIGNALED(stat))
+		return (WTERMSIG(stat));
+	return (0);
 }

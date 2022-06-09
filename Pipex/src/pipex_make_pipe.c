@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:54:16 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/07 16:50:12 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/09 18:29:53 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void    ft_make_pipe(t_info *info, int index)
 	{
 		pipe_ret = pipe(info->pipe_alpha);
 		if (pipe_ret < 0)
-			exit(127);
+			ft_error(PIPE_ERR);
 	}
 	else
 	{
 		pipe_ret = pipe(info->pipe_beta);
 		if (pipe_ret < 0)
-			exit(127);
+			ft_error(PIPE_ERR);
 	}
 	return ;
 }
