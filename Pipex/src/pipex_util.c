@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:28:38 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/09 12:39:55 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/14 14:30:13 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,5 @@ char	*ft_path_join(char *left_string_buf, char *read_buf)
 	while (read_buf[jdx] != '\0')
 		str[idx++] = read_buf[jdx++];
 	str[ft_strlen(left_string_buf) + ft_strlen(read_buf) + 1] = '\0';
-	// free(left_string_buf);
 	return (str);
 }

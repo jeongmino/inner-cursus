@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:56:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/09 18:30:58 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/14 17:15:32 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	open_file(char *file, int flag)
 			ft_perror(INFILE_OPEN_ERR);
 		open_ret = open(file, O_RDONLY);
 		if (open_ret < 0)
-			exit(127);
+			ft_perror(INFILE_OPEN_ERR);
 		return (open_ret);
 	}
 	open_ret = open(file, O_TRUNC | O_CREAT | O_RDWR, 0000644);

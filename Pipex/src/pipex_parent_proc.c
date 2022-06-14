@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:51:14 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/09 15:24:07 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/14 16:19:02 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ void    ft_parent_proc(t_info *info, int index)
 		close(info->pipe_beta[1]);
 		close(info->pipe_alpha[0]);
 	}
-	wait(NULL);
     return ;
 }

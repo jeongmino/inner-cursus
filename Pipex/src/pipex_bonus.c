@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 15:35:11 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/09 18:20:58 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/14 17:12:27 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ static	void	*ft_memset(void *b, int c, size_t len)
 int main(int ac, char **av, char **env)
 {
 	t_info  info;
+	int		ret;
 
+	ret = 0;
 	if (ac < 5)
 		ft_error(ARGS_NUM_ERR);
 	else
@@ -41,7 +43,7 @@ int main(int ac, char **av, char **env)
 			return (0);
 		} 
 		info.fdin = open_file(av[1], STDIN_FILENO);
-		ft_redir(&info); 
+		ret = ft_redir(&info); 
 	}
-	return (0);
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 20:18:12 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/09 18:21:27 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/14 17:09:46 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	    open_file(char *file, int flag);
 
 void	execute_cmd(char *cmd, char **envp);
 
-void	ft_redir(t_info *info);
+int		ft_redir(t_info *info);
 
 void    ft_child_proc(t_info *info, int index);
 
@@ -79,16 +79,18 @@ int 	ft_dup2(int fd1, int fd2);
 
 int 	ft_close(int fd);
 
-char	*get_next_line(int fd);
-
 void    ft_put_cmd_err(char *cmd);
 
 void	ft_here_doc_redir(t_info *info);
 
 char	*get_next_line(int fd);
 
+char	*str_join(char *s1, char *s2);
+
 void	ft_error(int err);
 
 int		ft_perror(int err);
+
+int		ft_check_status(t_info *info);
 
 #endif

@@ -1,2 +1,1 @@
-pipex: not-existing/deepthought.txt: No such file or directory
-grep: (standard input): Bad file descriptor
+Infile open error!: No such file or directory

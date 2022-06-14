@@ -12,14 +12,14 @@
 
 #include "../header/pipex.h"
 
-char	*some_error(char *str)
+static char	*some_error(char *str)
 {
 	if (str)
 		free(str);
 	return (NULL);
 }
 
-int	find_nl(char *str)
+static int	find_nl(char *str)
 {
 	if (str)
 	{
@@ -60,7 +60,7 @@ char	*str_join(char *s1, char *s2)
 	return (str);
 }
 
-char	*trim_rem(char *str)
+static char	*trim_rem(char *str)
 {
 	size_t	i;
 	size_t	j;

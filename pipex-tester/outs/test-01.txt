@@ -1,11 +1,1 @@
-gcc -Wall -Wextra -Werror -g -fsanitize=address   -c -o src/pipex_bonus.o src/pipex_bonus.c
-gcc -Wall -Wextra -Werror -g -fsanitize=address   -c -o src/pipex_child_proc.o src/pipex_child_proc.c
-gcc -Wall -Wextra -Werror -g -fsanitize=address   -c -o src/pipex_exec.o src/pipex_exec.c
-gcc -Wall -Wextra -Werror -g -fsanitize=address   -c -o src/pipex_make_pipe.o src/pipex_make_pipe.c
-gcc -Wall -Wextra -Werror -g -fsanitize=address   -c -o src/pipex_parent_proc.o src/pipex_parent_proc.c
-gcc -Wall -Wextra -Werror -g -fsanitize=address   -c -o src/pipex_openfile.o src/pipex_openfile.c
-gcc -Wall -Wextra -Werror -g -fsanitize=address   -c -o src/pipex_redir.o src/pipex_redir.c
-gcc -Wall -Wextra -Werror -g -fsanitize=address   -c -o src/pipex_util.o src/pipex_util.c
-gcc -Wall -Wextra -Werror -g -fsanitize=address   -c -o src/pipex_split.o src/pipex_split.c
-gcc -Wall -Wextra -Werror -g -fsanitize=address   -c -o src/pipex_free.o src/pipex_free.c
-gcc -Wall -Wextra -Werror -g -fsanitize=address -o pipex src/pipex_bonus.o src/pipex_child_proc.o src/pipex_exec.o src/pipex_make_pipe.o src/pipex_parent_proc.o src/pipex_openfile.o src/pipex_redir.o src/pipex_util.o src/pipex_split.o src/pipex_free.o
+make: Nothing to be done for `all'.

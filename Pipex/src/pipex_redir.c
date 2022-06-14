@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:55:12 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/09 16:08:08 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/14 17:07:19 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,22 @@ static	void	ft_pipe_to_outfile(t_info *info, int index)
 	return ;	
 }
 
-static void	ft_last_cmd(t_info *info)
+static int	ft_last_cmd(t_info *info)
 {
 	info->fdout = open_file(info->argv[info->argc - 1], STDOUT_FILENO);
 	ft_dup2(info->fdout, STDOUT_FILENO);
 	info->pid = ft_fork();
-	if (info->pid)
-		wait(NULL);
-	else
+	if (info->pid == 0)
 		execute_cmd(info->argv[info->argc - 2], info->envp);
+	while (info->argc-- > 3)
+	{
+		if (info->pid == wait(&info->status))
+			return(ft_check_status(info));
+	}
+	return (0);
 }
 
-void    ft_redir(t_info *info)
+int    ft_redir(t_info *info)
 {
 	int i;
 
@@ -51,5 +55,5 @@ void    ft_redir(t_info *info)
 		i++;    
 	}
 	ft_pipe_to_outfile(info, i);
-	ft_last_cmd(info);
+	return(ft_last_cmd(info));
 }
