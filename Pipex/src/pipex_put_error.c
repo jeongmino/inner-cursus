@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:23:19 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/14 17:33:16 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/14 18:04:26 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ void	ft_error(int err)
 int	ft_perror(int err)//ft_perror(CMD_ERR, 127);
 {
 	if (err == INFILE_OPEN_ERR) // err_num == 1
-	{	
 		perror("Infile open error!");
-		exit(127);
-	}
 	else if (err == OUTFILE_OPEN_ERR) //err_num == 1 
 		perror("Outfile open error!"); 
 	else if (err == EXE_ERR)  // 명령어가 존재하지 않으면 1  
