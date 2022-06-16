@@ -6,18 +6,18 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:52:19 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/09 15:22:54 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/15 21:02:24 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
 
-void    ft_child_proc(t_info *info, int index)
+void	ft_child_proc(t_info *info, int index)
 {
-    int i;
+	int	i;
 
-    i = index;
-	if (info->flag == 1) // if the number of cmd is even
+	i = index;
+	if (info->flag == 1)
 	{
 		close(info->pipe_alpha[0]);
 		if (i != 2)
@@ -32,5 +32,5 @@ void    ft_child_proc(t_info *info, int index)
 		ft_dup2(info->pipe_beta[1], STDOUT_FILENO);
 		execute_cmd(info->argv[i], info->envp);
 	}
-    return ;
+	return ;
 }

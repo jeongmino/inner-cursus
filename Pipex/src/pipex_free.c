@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 14:56:28 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/27 14:58:14 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/15 21:03:21 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void    ft_frees(char **str)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (str[i] != NULL)
-        free(str[i++]);
-    free(str[i]);
-    free(str);
+	i = 0;
+	while (str[i] != NULL)
+		free(str[i++]);
+	free(str[i]);
+	free(str);
 }
