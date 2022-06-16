@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 20:18:12 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/16 17:36:26 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/16 17:46:46 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_info
 {
 	int		fdin;
 	int		fdout;
-    int		argc;
+	int		argc;
 	char	**argv;
 	char	**envp;
 	int		pipe_alpha[2];
@@ -71,7 +71,7 @@ char	*ft_path_join(char *left_string_buf, char *read_buf);
 
 char	**ft_split(char const *s, char c);
 
-char    *ft_frees(char **str, char *str);
+char	*ft_frees(char **strs, char *str);
 
 pid_t   ft_fork(void);
 

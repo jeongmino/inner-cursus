@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:11:51 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/16 16:56:04 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/16 17:48:55 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ char	*get_next_line(int fd)
 	{
 		rd = read(fd, buf, BUFFER_SIZE);
 		if (rd < 0)
-			return (some_error(buf));
+			return (ft_frees(NULL, buf));
 		buf[rd] = '\0';
 		rem = str_join(rem, buf);
 	}
