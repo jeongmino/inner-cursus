@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 14:56:28 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/16 17:46:27 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/18 21:10:02 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,4 @@ char	*ft_frees(char **strs, char *str)
 	else
 		free(str);
 	return (NULL);
-
 }

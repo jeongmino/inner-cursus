@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 20:18:12 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/16 17:46:46 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/18 21:17:44 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -30,7 +30,7 @@ typedef struct s_info
 	char	**envp;
 	int		pipe_alpha[2];
 	int		pipe_beta[2];
-	pid_t	pid;
+	pid_t	*pid;
 	int		flag;
 	int		status;
 }				t_info;
@@ -47,23 +47,23 @@ enum e_error
 	DUP_ERR
 };
 
-int	    open_file(char *file, int flag);
+int		open_file(char *file, int flag);
 
 void	execute_cmd(char *cmd, char **envp);
 
 int		ft_redir(t_info *info);
 
-void    ft_child_proc(t_info *info, int index);
+void	ft_child_proc(t_info *info, int index);
 
-void    ft_make_pipe(t_info *info, int index);
+void	ft_make_pipe(t_info *info, int index);
 
-void    ft_parent_proc(t_info *info, int index);
+void	ft_parent_proc(t_info *info, int index);
 
-int	    ft_strlen(char *str);
+int		ft_strlen(char *str);
 
-int	    ft_strichr(const char *s, int c);
+int		ft_strichr(const char *s, int c);
 
-int	    ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 char	*ft_strndup(const char *s, int cpy_len);
 
@@ -73,15 +73,15 @@ char	**ft_split(char const *s, char c);
 
 char	*ft_frees(char **strs, char *str);
 
-pid_t   ft_fork(void);
+pid_t	ft_fork(void);
 
-int 	ft_dup2(int fd1, int fd2);
+int		ft_dup2(int fd1, int fd2);
 
-int 	ft_close(int fd);
+int		ft_close(int fd);
 
-void    ft_put_cmd_err(char *cmd);
+void	ft_put_cmd_err(char *cmd);
 
-void	ft_here_doc_redir(t_info *info);
+int		ft_here_doc_redir(t_info *info);
 
 char	*get_next_line(int fd);
 

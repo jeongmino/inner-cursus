@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_child_proc.c                                 :+:      :+:    :+:   */
+/*   child_proc_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:52:19 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/15 21:02:24 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/18 20:15:32 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/pipex.h"
+#include "../header/pipex_bonus.h"
 
 void	ft_child_proc(t_info *info, int index)
 {

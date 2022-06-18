@@ -6,7 +6,7 @@
 #    By: junoh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/16 18:25:39 by junoh             #+#    #+#              #
-#    Updated: 2022/06/16 19:06:30 by junoh            ###   ########.fr        #
+#    Updated: 2022/06/18 18:20:43 by junoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ RMFLAGS			= -f
 
 SRCS_M 			=	mandatory/pipex.c\
 					mandatory/child_proc.c\
+					mandatory/exec.c\
 					mandatory/free.c\
 					mandatory/ft.c\
 					mandatory/make_pipe.c\
@@ -27,6 +28,7 @@ SRCS_M 			=	mandatory/pipex.c\
 					mandatory/redir.c\
 					mandatory/split.c\
 					mandatory/util.c\
+
 OBJS_M			= $(SRCS_M:.c=.o)
 
 SRCS_B			=	bonus/pipex_bonus.c\
@@ -37,14 +39,17 @@ SRCS_B			=	bonus/pipex_bonus.c\
 					bonus/here_doc_bonus.c\
 					bonus/make_pipe_bonus.c\
 					bonus/openfile_bonus.c\
-					bonus/parent_bonus.c\
+					bonus/parent_proc_bonus.c\
 					bonus/put_error_bonus.c\
 					bonus/redir_bonus.c\
 					bonus/split_bonus.c\
+					bonus/exec_bonus.c\
+					bonus/util_bonus.c\
+
 OBJS_B			= $(SRCS_B:.c=.o)
 
-HEADER			= 	includes/pipex.h\
-					includes/pipex_bonus.h\
+HEADER			= 	headers/pipex.h\
+					headers/pipex_bonus.h\
 
 all:			$(NAME)
 
@@ -61,7 +66,7 @@ clean:
 				$(RM) $(RMFLAGS) $(OBJS)
 
 fclean:			clean
-				$(RM) $(RMFLAGS) $(OBJS)
+				$(RM) $(RMFLAGS) $(OBJS_M) $(OBJS_B)
 
 re:				fclean all
 
