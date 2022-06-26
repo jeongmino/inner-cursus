@@ -1,43 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_ft.c                                         :+:      :+:    :+:   */
+/*   parent_proc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 20:34:11 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/16 16:47:04 by junoh            ###   ########.fr       */
+/*   Created: 2022/05/29 19:51:14 by junoh             #+#    #+#             */
+/*   Updated: 2022/06/20 19:15:49 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
 
-pid_t	ft_fork(void)
+void	ft_parent_proc(t_info *info, int index)
 {
-	pid_t	ret_pid;
-
-	ret_pid = fork();
-	if (ret_pid == -1)
-		ft_error(PID_ERR);
-	return (ret_pid);
-}
-
-int	ft_dup2(int fd1, int fd2)
-{
-	int	ret_value;
-
-	ret_value = dup2(fd1, fd2);
-	if (ret_value < 0)
-		ft_perror(DUP_ERR);
-	close(fd1);
-	return (ret_value);
-}
-
-int	ft_check_stat(int stat)
-{
-	if (WIFEXITED(stat))
-		return (WEXITSTATUS(stat));
-	if (WIFSIGNALED(stat))
-		return (WTERMSIG(stat));
-	return (0);
+	if (info->flag == 1)
+	{
+		close(info->pipe_alpha[1]);
+		if (index != 2)
+			close(info->pipe_beta[0]);
+	}
+	else
+	{
+		close(info->pipe_beta[1]);
+		close(info->pipe_alpha[0]);
+	}
+	return ;
 }

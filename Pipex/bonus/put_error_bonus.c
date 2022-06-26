@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_put_error.c                                  :+:      :+:    :+:   */
+/*   put_error_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:23:19 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/18 17:00:11 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/20 16:04:54 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/pipex.h"
+#include "../header/pipex_bonus.h"
 
 static void	ft_putchar_fd(char c, int fd)
 {
@@ -56,11 +56,11 @@ int	ft_perror(int err)
 
 int	ft_check_status(t_info *info)
 {
-	const int	w_status = info->status & 177;
+	const int	w_status = info->status & 0177;
 
 	if (w_status == 0)
 		return ((info->status >> 8) & 0x000000ff);
-	if (w_status != 177 && w_status != 0)
+	if (w_status != 0177 && w_status != 0)
 		return (w_status);
 	return (0);
 }
