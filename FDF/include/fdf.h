@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:38:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/28 15:51:07 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/28 17:35:13 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # include <fcntl.h> 
 # include <stdio.h>
 # include <stdlib.h>
+
+# define BUFFER_SIZE 256
+
+enum    e_error
+{
+    MAP_ERROR;
+}
 
 typedef struct  s_coordinate
 {
@@ -34,5 +41,27 @@ typedef struct  s_data
     int     endian;
 }               t_data;
 
+typedef struct  s_map
+{
+    t_data          *map_data;         
+    t_coordinate    *map_arr;
+    int             width;
+    int             height;
+    int             map[2];
+    
+}               t_map;
+
+
+/* ft_util.c */
+int ft_strlen(char  *str);
+
+/* ft_free.c */
+char	*ft_frees(char **strs, char *str);
+
+/* gnl.c */
+char	*get_next_line(int fd)
+
+/* ft_split.c */
+char	**ft_split(char const *s, char c);
 
 #endif
