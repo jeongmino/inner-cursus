@@ -6,13 +6,13 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 22:10:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/05/31 16:00:14 by junoh            ###   ########.fr       */
+/*   Updated: 2022/06/28 15:58:44 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_strjoin(char *left_string_buf, char *read_buf)
+char	*ft_strjoin(char *left_string_buf, char *read_buf)
 {
 	char	*str;
 	int		idx;
@@ -40,7 +40,7 @@ static char	*ft_strjoin(char *left_string_buf, char *read_buf)
 	return (str);
 }
 
-static char	*ft_get_full_line(char *left_string_buf)
+char	*ft_get_full_line(char *left_string_buf)
 {
 	char	*str;
 	int		idx;
@@ -59,7 +59,7 @@ static char	*ft_get_full_line(char *left_string_buf)
 	return (str);
 }
 
-static char	*ft_save_point(char *left_string_buf)
+char	*ft_save_point(char *left_string_buf)
 {
 	char	*save_point;
 	int		idx;
@@ -85,12 +85,12 @@ static char	*ft_save_point(char *left_string_buf)
 	return (save_point);
 }
 
-static char	*ft_get_line_nl(char *left_string_buf, char *read_buf, int fd)
+char	*ft_get_line_nl(char *left_string_buf, char *read_buf, int fd)
 {
 	ssize_t	read_ret;
 
 	read_ret = 1;
-	while (!(ft_strichr(left_string_buf, '\n')) && read_ret)
+	while (!(ft_strchr(left_string_buf, '\n')) && read_ret)
 	{
 		read_ret = read(fd, read_buf, BUFFER_SIZE);
 		if (read_ret == -1)

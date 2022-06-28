@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 17:22:38 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/28 16:43:27 by junoh            ###   ########.fr       */
+/*   Created: 2022/06/28 15:38:39 by junoh             #+#    #+#             */
+/*   Updated: 2022/06/28 15:51:07 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-#include <stdio.h>
-#include <fcntl.h>
+#ifndef FDF_H
+# define FDF_H
 
-int main(int ac, char **av)
+# include <fcntl.h> 
+# include <stdio.h>
+# include <stdlib.h>
+
+typedef struct  s_coordinate
 {
-    int fd;
-    char    *line;
-    
-    fd = open(av[1], O_RDONLY);
-    while (1)
-    {
-        line = get_next_line(fd);
-        if (line == NULL)
-            break;
-        printf("%s", line);
-    }
-    return (0);           
-}
+    int x;
+    int y;
+    int z;
+    int color;
+}               t_coordinate;
+
+typedef struct  s_data
+{
+    void    *img;
+    char    *addr;
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+}               t_data;
+
+
+#endif
