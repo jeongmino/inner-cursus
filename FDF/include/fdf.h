@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:38:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/28 17:35:13 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/14 14:55:38 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 enum    e_error
 {
-    MAP_ERROR;
-}
+    MAP_ERROR
+};
 
 typedef struct  s_coordinate
 {
@@ -44,7 +44,7 @@ typedef struct  s_data
 typedef struct  s_map
 {
     t_data          *map_data;         
-    t_coordinate    *map_arr;
+    t_coordinate    **coord;
     int             width;
     int             height;
     int             map[2];

@@ -6,15 +6,23 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/28 17:44:28 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/14 15:21:55 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static char **ft_make_coord()
+static  int ft_make_coord(t_map *map, char **lines)
 {
     
+    while (*lines)
+    {
+        map->coord = (t_coordinate*)malloc(sizeof(t_coordinate));
+        if (map->coord == NULL)
+            return (1);
+        map->*coord->z = ft_atoi(**lines);
+        *lines++;
+    }
 }
 
 static  void    ft_count_size(t_map *map, char **str)
@@ -34,11 +42,10 @@ static  void    ft_count_size(t_map *map, char **str)
     map->height++;
 }
 
-void    ft_parse_map(t_map *map, int fd)
+void    ft_parse_map(t_map *map, int fd, int flag)
 {
     char    *line;
     char    **line_nums;
-    int     tmp;
     
     while (1)
     {
@@ -46,6 +53,11 @@ void    ft_parse_map(t_map *map, int fd)
         if (line == NULL)
             break;
         line_nums = ft_split(line, ' ');
+        if (flag)
+            if(ft_make_coord(map, line_nums))
+               ft_frees(line_nums, line); 
         ft_count_size(map, line_nums);
+        ft_frees(line_nums, line);
     }
+    return ;
 }
