@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/14 15:21:55 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/16 13:33:28 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 static  int ft_make_coord(t_map *map, char **lines)
 {
-    
+    int width;
+
+    width = map->width;
     while (*lines)
     {
-        map->coord = (t_coordinate*)malloc(sizeof(t_coordinate));
-        if (map->coord == NULL)
+        *(map->coord) = (t_coordinate*)malloc(sizeof(t_coordinate));
+        if (map->*coord == NULL)
             return (1);
-        map->*coord->z = ft_atoi(**lines);
+        while (width--)
+        {
+            **(map->coord)->z = ft_atoi_hex(*lines);
+            **(map->coord)->x++;
+            **(map->coord)->y++;
+            **(map->coord)++;
+        }
+        *(map->coord)++;
         *lines++;
     }
 }
