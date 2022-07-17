@@ -6,30 +6,48 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/16 13:33:28 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/17 20:04:05 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+static  void ft_set_coord(t_map *map, char *str, int i, int j)
+{
+    map->coord[i][map->width - j].z = ft_atoi_hex(*str, \
+                &(map->coord[i][map->width - j].color));
+    map->coord[i][map->width - j].x = GAP * ((map->width) - j);
+    map->coord[i][map->width - j].y = GAP * i;
+    ft_isometric(&(map->coord[i][map->width - j].x), \
+                 &(map->coord[i][map->width - j].y), \
+                   map->coord[i][map->width - j].z);
+}
+
 static  int ft_make_coord(t_map *map, char **lines)
 {
-    int width;
+    int j;
+    int i;
 
-    width = map->width;
+    i = 0;
     while (*lines)
     {
-        *(map->coord) = (t_coordinate*)malloc(sizeof(t_coordinate));
-        if (map->*coord == NULL)
-            return (1);
-        while (width--)
+        j = map->width;
+        *(map->coord) = (t_coordinate*)malloc(sizeof(t_coordinate) * \
+            map->width);
+        if (*(map->coord) == NULL)
         {
-            **(map->coord)->z = ft_atoi_hex(*lines);
-            **(map->coord)->x++;
-            **(map->coord)->y++;
-            **(map->coord)++;
+            ft_frees(map->coord, NULL);
+            return (1);
         }
-        *(map->coord)++;
+        while (j > 0)
+        {
+            map->coord[i][map->width - j].z = ft_atoi_hex(*lines, \
+                &(map->coord[i][map->width - j].color));
+            map->coord[i][map->width - j].x = GAP * ((map->width) - j);
+            map->coord[i][map->width - j].y = GAP * i;
+            j--;   
+        }
+        i++;
         *lines++;
     }
 }

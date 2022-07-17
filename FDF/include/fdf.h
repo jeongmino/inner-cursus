@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:38:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/14 14:55:38 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/17 17:52:39 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@
 # include <fcntl.h> 
 # include <stdio.h>
 # include <stdlib.h>
+# include <math.h>
 
-# define BUFFER_SIZE 256
-
+# define HEIGHT			1080
+# define WIDTH			1920
+# define BUFFER_SIZE    256
+# define GAP            35
 enum    e_error
 {
     MAP_ERROR
+    ERR_FDF_INIT
 };
 
 typedef struct  s_coordinate
@@ -34,6 +38,8 @@ typedef struct  s_coordinate
 
 typedef struct  s_data
 {
+    void    *mlx;
+    void    *win;
     void    *img;
     char    *addr;
     int     bits_per_pixel;

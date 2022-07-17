@@ -6,13 +6,13 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:44:01 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/16 11:41:36 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/17 19:41:35 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int	ft_atoi_hex(char *str)
+int	ft_atoi_hex(char *str, int *color)
 {
 	int sign;
 	int	sum;
@@ -30,9 +30,8 @@ int	ft_atoi_hex(char *str)
 		str++;
 	}
     if (*str == ',')
-        ft_atohex(++str);
-    else
-	    return (sum);
+        ft_atohex(++str, color);
+	return (sum);
 }
 
 static char	ft_toupper(char c)
@@ -58,16 +57,18 @@ static int	ft_isdigit_base(char c)
 	return (-1);
 }
 
-static int	ft_atohex(char *str)
+static void	ft_atohex(char *str, int *color)
 {
     int	sum;
 
 	sum = 0x0;
+	while (*str == '0' || *str == 'x' || *str == 'X')
+		str++;
 	while ((*str >= '0' && *str <= '9') || (*str >= 'a' && *str <= 'f') || \
 	(*str >= 'A' && *str <= 'F'))
 	{
 		sum = sum * 16 + ft_isdigit_base(*str);
 		str++;
 	}
-	return (sum);
+	color = sum;
 }
