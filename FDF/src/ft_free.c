@@ -6,13 +6,13 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:01:43 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/28 17:38:16 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/17 21:56:10 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	*ft_frees(char **strs, char *str)
+char	*ft_frees(char **strs, char *str)
 {
 	int	i;
 
@@ -26,4 +26,15 @@ void	*ft_frees(char **strs, char *str)
 	}
 	if (str != NULL)
 		free(str);
+	return (NULL);
+}
+
+void	ft_coord_free(t_map *map, int index)
+{
+	int 			i;
+	
+	i = 0;
+	while (i <= index)
+		free(map->coord[i++]);
+	free(map->coord);
 }

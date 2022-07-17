@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/17 20:04:05 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/17 22:00:52 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static  void ft_set_coord(t_map *map, char *str, int i, int j)
 {
-    map->coord[i][map->width - j].z = ft_atoi_hex(*str, \
+    map->coord[i][map->width - j].z = ft_atoi_hex(str, \
                 &(map->coord[i][map->width - j].color));
     map->coord[i][map->width - j].x = GAP * ((map->width) - j);
     map->coord[i][map->width - j].y = GAP * i;
@@ -36,20 +36,18 @@ static  int ft_make_coord(t_map *map, char **lines)
             map->width);
         if (*(map->coord) == NULL)
         {
-            ft_frees(map->coord, NULL);
+            ft_coord_free(map, i);
             return (1);
         }
         while (j > 0)
         {
-            map->coord[i][map->width - j].z = ft_atoi_hex(*lines, \
-                &(map->coord[i][map->width - j].color));
-            map->coord[i][map->width - j].x = GAP * ((map->width) - j);
-            map->coord[i][map->width - j].y = GAP * i;
+            ft_set_coord(map, *lines, i, j);
             j--;   
         }
         i++;
-        *lines++;
+        lines++;
     }
+    return (0);
 }
 
 static  void    ft_count_size(t_map *map, char **str)
@@ -58,6 +56,7 @@ static  void    ft_count_size(t_map *map, char **str)
     int tmp;
     
     len = 0;
+    tmp = 0;
     while (str[0][len])
         len++;
     if (map->height == 0)

@@ -6,13 +6,13 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 17:00:22 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/17 21:20:11 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/17 21:39:12 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	ft_isometric(int *x, int *y, int z)
+void	ft_isometric(int *x, int *y, int z)
 {
 	int	prev_x;
 	int	prev_y;
@@ -44,7 +44,7 @@ static void ft_bresenham(t_map *map, t_coordinate s_point, t_coordinate e_point)
     p_next = 2 * dy - dx;  // P1(초기값) 설정
     while (s_point.x <= e_point.x)
     {
-    	my_mlx_pixel_put(map, s_point.x, s_point.y , s_point.color)
+    	my_mlx_pixel_put(map, s_point.x, s_point.y , s_point.color);
         s_point.x++;  // x는 매 좌표마다 증가
         if (p_next < 0)  // Pnext 구하는 부분
         	p_next = p_next + 2 * dy;
