@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 17:00:22 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/18 16:10:30 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/18 18:51:53 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,28 @@ static void ft_bresenham(t_map *map, t_coordinate s_point, t_coordinate e_point)
 {
 	int	dx;
 	int	dy;
+	int	x_step;
 	int	p_next;
 	
     dx = e_point.x - s_point.x;
     dy = e_point.y - s_point.y;
-    p_next = 2 * dy - dx;  // P1(초기값) 설정
-    while (s_point.x <= e_point.x)
-    {
-    	my_mlx_pixel_put(map, s_point.x, s_point.y , s_point.color);
-        s_point.x++;  // x는 매 좌표마다 증가
-        if (p_next < 0)  // Pnext 구하는 부분
-        	p_next = p_next + 2 * dy;
-        else
-        {
-        	p_next = p_next + 2 * dy - 2 * dx;
-            s_point.y++;
-        }
-    }
+	p_next = 2 * dy - dx; // P1(초기값) 설정
+	if (s_point.x < e_point.x)
+		x_step = 1;
+	else
+		x_step = -1;
+	while (s_point.x != e_point.x)
+	{
+		my_mlx_pixel_put(map, s_point.x, s_point.y, s_point.color);
+		s_point.x += x_step;	// x는 매 좌표마다 증가
+		if (p_next < 0) // Pnext 구하는 부분
+			p_next += 2 * dy;
+		else
+		{
+			p_next += 2 * dy - 2 * dx;
+			s_point.y++;
+		}
+	}
 }
 
 static t_coordinate set_point(t_map *map, int i, int j)
@@ -64,6 +69,7 @@ static t_coordinate set_point(t_map *map, int i, int j)
 	point.y = map->coord[i][j].y;
 	point.z = 0;
 	point.color = map->coord[i][j].color;
+//	printf("x = %d, y = %d, color = %d\n", point.x, point.y, point.color);
 	return (point);
 }
 
@@ -78,10 +84,13 @@ void	ft_draw(t_map *map)
 		w = -1;
 		while (++w < map->width)
 		{	
-			if (w != map->width - 1)
-				ft_bresenham(map, set_point(map, h, w), set_point(map, h, w + 1));
+		/*	if (w != map->width - 1)
+				ft_bresenham(map, set_point(map, h, w), set_point(map, h, w + 1)); */
 			if (h != map->height - 1)
+			{
 				ft_bresenham(map, set_point(map, h, w), set_point(map, h + 1, w));
+				printf("%d %d %d %d\n", map->coord[h][w].x, map->coord[h][w].y, map->coord[h + 1][w].x, map->coord[h + 1][w].y);  
+			}
 		}	
 	}
 }

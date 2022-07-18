@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:44:01 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/18 17:14:25 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/18 17:53:04 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	ft_atohex(char *str, int *color)
 		sum = sum * 16 + ft_isdigit_base(*str);
 		str++;
 	}
+	//printf("sum = %d\n", sum);
 	*color = sum;
 }
 
@@ -57,15 +58,21 @@ int	ft_atoi_hex(char *str, int *color)
 	int	sum;
 
 	sign = 1;
-	if (*str++ == '-')
+	if (*str == '-')
+	{
 		sign = -1;
+		str++;
+	}
 	sum = 0;
 	while (*str >= '0' && *str <= '9')
 	{
 		sum = (sum * 10) + sign * (*str - '0');
 		str++;
 	}
-    if (*str == ',')
+    if (*str == ',' || *color != 0)
         ft_atohex(++str, color);
+	else
+		*color = 0x0FFF00;
+//	printf("sum = %d\n", sum);
 	return (sum);
 }

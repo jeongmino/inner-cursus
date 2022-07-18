@@ -1,4 +1,5 @@
 #include <mlx.h>
+#include <stdio.h>
 
 typedef struct s_data {
 
@@ -15,6 +16,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
+	printf("line_length = %d\n", data->line_length);
 }
 
 int	ft_multi(int *num)

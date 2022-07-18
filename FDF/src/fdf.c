@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:47:08 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/18 17:14:32 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/18 18:11:11 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ int main(int argc, char **argv)
     ft_init(&map, fd, argv[1]);
     ft_print_coord(&map);
     ft_draw(&map);
+    mlx_put_image_to_window(map.map_data->mlx, map.map_data->win, \
+     map.map_data->img, 0, 0);
     mlx_loop(map.map_data->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:38:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/18 17:04:40 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/18 18:47:09 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # define HEIGHT			1080
 # define WIDTH			1920
 # define BUFFER_SIZE    256
-# define GAP            10
+# define GAP            35
+
 enum    e_error
 {
     MAP_ERROR,

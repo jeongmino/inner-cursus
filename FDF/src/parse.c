@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/18 17:08:00 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/18 18:46:09 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static  void ft_set_coord(t_map *map, char *str, int i, int j)
     map->coord[i][map->width - j].y = GAP * i;
     ft_isometric(&(map->coord[i][map->width - j].x), \
                  &(map->coord[i][map->width - j].y), \
-                   map->coord[i][map->width - j].z);
-}
+                   map->coord[i][map->width - j].z);  
+} 
 
 static  int ft_make_coord(t_map *map, char **lines)
 {
