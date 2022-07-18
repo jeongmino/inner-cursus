@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 17:00:22 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/17 21:39:12 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/18 16:10:30 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_isometric(int *x, int *y, int z)
 
 	prev_x = *x;
 	prev_y = *y;
-	*x = (prev_x - prev_y) * cos(M_PI / 6);
-	*y = (prev_x + prev_y) * sin(M_PI / 6) - z;
+	*x = (prev_x - prev_y) * cos(0.523599);
+	*y = (prev_x + prev_y) * sin(0.523599) - z;
 }
 
 static void	my_mlx_pixel_put(t_map *map, int x, int y, int color)
@@ -71,7 +71,7 @@ void	ft_draw(t_map *map)
 {
 	int	w;
 	int	h;
-	
+
 	h = -1;
 	while (++h < map->height)
 	{

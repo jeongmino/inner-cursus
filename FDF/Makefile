@@ -1,55 +1,59 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/28 15:38:19 by junoh             #+#    #+#              #
-#    Updated: 2022/07/17 22:20:01 by junoh            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = fdf
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+INCLUDES = -I./include
+MLX_DIR=./minilibx
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGl -framework AppKit
 
-NAME 		= 	fdf
-CC 			= 	gcc 
-RM 			= 	rm
-CFLAGS		= 	-Wall -Wextra -Werror -g -fsanitize=address
-RMFALGS 	= 	-f
+#source
+SRC_DIR = src/
+SRC = 			gnl.c\
+				ft_atoi_hex.c\
+				ft_draw.c\
+				ft_free.c\
+				ft_init.c\
+				ft_open_file.c\
+				ft_put_error.c\
+				ft_split.c\
+				ft_util.c\
+				fdf.c\
+				parse.c\
 
-SRC 		=	src/fdf.c\
-				src/ft_atoi_hex.c\
-				src/ft_draw.c\
-				src/ft_free.c\
-				src/ft_init.c\
-				src/ft_open_file.c\
-				src/ft_put_error.c\
-				src/ft_split.c\
-				src/ft_util.c\
-				src/gnl.c\
-				src/parse.c\
 
-OBJ 		= 	$(SRC:.c=.o)
+SRC_PREFIXED = $(addprefix $(SRC_DIR), $(SRC))
 
-HEADER 		= 	include/fdf.h
+#objsm
+OBJS = $(SRC_PREFIXED:.c=.o)
 
-MLX_FLAGS 	= 	-lmlx -framework OpenGL -framework AppKit
+all : $(NAME)
 
-MATH_FLAGS 	= 	-lm
+%.o: %.c ./includes/fdf.h
+	$(CC) $(CFLAGS) -I$(MLX_DIR) -c $< -o $@
+$(NAME): $(OBJS)
+	$(MAKE) -C $(MLX_DIR)
+	$(CC) $(CFLAGS) $(OBJS) -lm $(MLX_FLAGS) -o $(NAME)
+	cp $(MLX_DIR)/libmlx.dylib libmlx.dylib
+	@echo $(NAME) est construit
 
-all: 			$(NAME)
+clean :
+	@$(MAKE) clean -C $(MLX_DIR)
+	@rm -rf $(OBJS)
+	@echo cleaning
 
-$(NAME): 		$(OBJ)
-				$(CC) ${CFLAGS} -o ${NAME} $^
+fclean : clean
+	@rm -rf $(NAME)
+	@rm -rf libmlx.dylib
+	@echo "full clean"
 
-%.o: %.c $(HEADER)
-				$(CC) $(CFLAGS) $<
+re : fclean all
 
-clean:
-				$(RM) $(RMFALGS) $(OBJ)
-		
-fclean: 		clean
-				$(RM) $(RMFALGS) $(OBJ) $(NAME)
+bonus : re
 
-re: 			fclean all
+map42:all
+	./fdf test_maps/42.map
+map_simple:all
+	./fdf test_maps/42.map
+help	:
+	@echo "all $(NAME) clean fclean re \033[0;32m map42 map_simple help\033[m"
 
-.PHONY:			all clean fclean r
+.PHONY	: all clean fclean re help

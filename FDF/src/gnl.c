@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:02 by junoh             #+#    #+#             */
-/*   Updated: 2022/06/28 17:00:46 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/18 14:23:57 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL);
 	rd = 1;
-	rem = NULL;
 	while (!find_nl(rem) && rd > 0)
 	{
 		rd = read(fd, buf, BUFFER_SIZE);

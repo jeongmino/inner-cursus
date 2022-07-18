@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:38:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/17 22:13:09 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/18 17:04:40 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define HEIGHT			1080
 # define WIDTH			1920
 # define BUFFER_SIZE    256
-# define GAP            35
+# define GAP            10
 enum    e_error
 {
     MAP_ERROR,
@@ -62,6 +62,7 @@ typedef struct  s_map
 
 /* ft_util.c */
 int     ft_strlen(char  *str);
+void    *ft_memalloc(size_t size);
 
 /* ft_free.c */
 char	*ft_frees(char **strs, char *str);
@@ -81,7 +82,7 @@ void	ft_draw(t_map *map);
 void	ft_isometric(int *x, int *y, int z);
 
 /* ft_init.c */
-void    ft_init(t_map *map, int fd);
+void    ft_init(t_map *map, int fd, char *file);
 
 /* ft_open_file.c */
 int     ft_open_file(char *file);
@@ -91,5 +92,5 @@ void	ft_perror(int err);
 
 /* ft_parse.c */
 void    ft_parse_map(t_map *map, int fd, int flag);
-
+void    ft_print_coord(t_map *map);
 #endif

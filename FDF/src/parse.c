@@ -6,11 +6,30 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/17 22:00:52 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/18 17:08:00 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+void ft_print_coord(t_map *map)
+{
+    int w;
+    int h = 0;
+
+    while (h < map->height)
+    {
+        w = 0;
+        while (w < map->width)
+        {
+            printf("x = %d, y = %d, z = %d, color = %d\n", map->coord[h][w].x, \
+            map->coord[h][w].y, map->coord[h][w].z, map->coord[h][w].color);
+            w++;
+        }
+        h++;
+    }
+    return ;
+}
 
 static  void ft_set_coord(t_map *map, char *str, int i, int j)
 {
@@ -27,12 +46,12 @@ static  int ft_make_coord(t_map *map, char **lines)
 {
     int j;
     int i;
-
+    
     i = 0;
-    while (*lines)
+    while (i < map->height)
     {
         j = map->width;
-        *(map->coord) = (t_coordinate*)malloc(sizeof(t_coordinate) * \
+        map->coord[i] = (t_coordinate *)ft_memalloc(sizeof(t_coordinate) * \
             map->width);
         if (*(map->coord) == NULL)
         {
@@ -41,11 +60,10 @@ static  int ft_make_coord(t_map *map, char **lines)
         }
         while (j > 0)
         {
-            ft_set_coord(map, *lines, i, j);
+            ft_set_coord(map, lines[map->width - j], i, j);
             j--;   
         }
         i++;
-        lines++;
     }
     return (0);
 }
@@ -53,17 +71,13 @@ static  int ft_make_coord(t_map *map, char **lines)
 static  void    ft_count_size(t_map *map, char **str)
 {
     int len;
-    int tmp;
     
     len = 0;
-    tmp = 0;
-    while (str[0][len])
+    while (str[len])
         len++;
     if (map->height == 0)
         map->width = len;
-    else
-        tmp = len;
-    if (tmp != map->width)
+    if (len != map->width)
             ft_perror(MAP_ERROR);
     map->height++;
 }
@@ -79,10 +93,13 @@ void    ft_parse_map(t_map *map, int fd, int flag)
         if (line == NULL)
             break;
         line_nums = ft_split(line, ' ');
-        if (flag)
+        if (flag == 1)
+        {
             if(ft_make_coord(map, line_nums))
                ft_frees(line_nums, line); 
-        ft_count_size(map, line_nums);
+        }
+        if (flag != 1)
+            ft_count_size(map, line_nums);
         ft_frees(line_nums, line);
     }
     return ;

@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:47:08 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/17 21:36:47 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/18 17:14:32 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ static void ft_var_set(t_map *map)
 
 int main(int argc, char **argv)
 {
-    t_map   *map;
+    t_map   map;
     int     fd;
     
     if (argc != 2)
         return (1);
     fd = ft_open_file(argv[1]);
-    map = NULL;
-    ft_var_set(map);
-    ft_init(map, fd);
-    ft_draw(map);
-    mlx_loop(map->map_data->mlx);
+    ft_var_set(&map);
+    ft_init(&map, fd, argv[1]);
+    ft_print_coord(&map);
+    ft_draw(&map);
+    mlx_loop(map.map_data->mlx);
 }

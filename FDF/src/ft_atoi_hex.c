@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:44:01 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/17 21:38:19 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/18 17:14:25 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,8 @@ int	ft_atoi_hex(char *str, int *color)
 	int	sum;
 
 	sign = 1;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str++ == '-')
-			sign = -1;
-	}
+	if (*str++ == '-')
+		sign = -1;
 	sum = 0;
 	while (*str >= '0' && *str <= '9')
 	{
