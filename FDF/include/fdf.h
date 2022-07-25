@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:38:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/18 18:47:09 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/25 15:38:20 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,8 @@ void	ft_perror(int err);
 /* ft_parse.c */
 void    ft_parse_map(t_map *map, int fd, int flag);
 void    ft_print_coord(t_map *map);
+
+/* ft_search_coord.c */
+void    ft_search_coord(t_map *map);
+
 #endif

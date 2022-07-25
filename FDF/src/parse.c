@@ -6,13 +6,13 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/18 18:46:09 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/25 13:31:21 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void ft_print_coord(t_map *map)
+void ft_print_coord(t_map *map) // 마지막에는 삭제할 함수
 {
     int w;
     int h = 0;
@@ -31,40 +31,51 @@ void ft_print_coord(t_map *map)
     return ;
 }
 
-static  void ft_set_coord(t_map *map, char *str, int i, int j)
+static void ft_make_coord_arr(t_map *map)
 {
-    map->coord[i][map->width - j].z = ft_atoi_hex(str, \
-                &(map->coord[i][map->width - j].color));
-    map->coord[i][map->width - j].x = GAP * ((map->width) - j);
-    map->coord[i][map->width - j].y = GAP * i;
-    ft_isometric(&(map->coord[i][map->width - j].x), \
-                 &(map->coord[i][map->width - j].y), \
-                   map->coord[i][map->width - j].z);  
-} 
-
-static  int ft_make_coord(t_map *map, char **lines)
-{
-    int j;
     int i;
-    
+
     i = 0;
     while (i < map->height)
     {
-        j = map->width;
         map->coord[i] = (t_coordinate *)ft_memalloc(sizeof(t_coordinate) * \
             map->width);
-        if (*(map->coord) == NULL)
+        if (map->coord[i] == NULL)
         {
             ft_coord_free(map, i);
-            return (1);
-        }
-        while (j > 0)
-        {
-            ft_set_coord(map, lines[map->width - j], i, j);
-            j--;   
+            exit (1);
         }
         i++;
     }
+    return ;
+}
+
+static  int ft_set_coord(t_map *map, char *str, int j, int i)
+{
+    map->coord[i][j].color = 0x0FFF00;
+    map->coord[i][j].z = ft_atoi_hex(str, \
+                &(map->coord[i][j].color));
+    map->coord[i][j].x = GAP * j;
+    map->coord[i][j].y = GAP * i;
+    ft_isometric(&(map->coord[i][j].x), \
+                 &(map->coord[i][j].y), \
+                   map->coord[i][j].z);
+    //map->coord[i][j].x += 350;
+    //map->coord[i][j].y += 350;
+    return (1);
+} 
+
+static  int ft_make_coord(t_map *map, char **lines, int h)
+{
+    int i;
+    int cnt = 0;
+    i = 0;
+    while (i < map->width)
+    {
+        ft_set_coord(map, lines[i], i, h);
+        i++;
+    }
+    printf("cnt = %d\n", cnt);
     return (0);
 }
 
@@ -86,7 +97,11 @@ void    ft_parse_map(t_map *map, int fd, int flag)
 {
     char    *line;
     char    **line_nums;
-    
+    int     h;
+
+    h = 0;
+    if (flag == 1)
+        ft_make_coord_arr(map);
     while (1)
     {
         line = get_next_line(fd);
@@ -95,7 +110,7 @@ void    ft_parse_map(t_map *map, int fd, int flag)
         line_nums = ft_split(line, ' ');
         if (flag == 1)
         {
-            if(ft_make_coord(map, line_nums))
+            if(ft_make_coord(map, line_nums, h++))
                ft_frees(line_nums, line); 
         }
         if (flag != 1)

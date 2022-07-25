@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 13:31:14 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/18 16:03:29 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/22 15:03:04 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void    ft_init(t_map *map, int fd, char *file)
         exit(1);
     fd = open(file, O_RDONLY);
     if (fd < 0)
-        exit(1);   
+        exit(1); 
     ft_parse_map(map, fd, 1);
     map->map_data = (t_data*)ft_memalloc(sizeof(t_data));
     if (map->map_data == NULL)

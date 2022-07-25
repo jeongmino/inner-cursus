@@ -18,6 +18,7 @@ SRC = 			gnl.c\
 				ft_util.c\
 				fdf.c\
 				parse.c\
+				ft_search_coord.c\
 
 
 SRC_PREFIXED = $(addprefix $(SRC_DIR), $(SRC))
