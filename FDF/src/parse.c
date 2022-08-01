@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/25 13:31:21 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/01 16:04:06 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,25 @@ static void ft_make_coord_arr(t_map *map)
     return ;
 }
 
-static  int ft_set_coord(t_map *map, char *str, int j, int i)
+void ft_set_coord(t_map *map)
 {
-    map->coord[i][j].color = 0x0FFF00;
-    map->coord[i][j].z = ft_atoi_hex(str, \
-                &(map->coord[i][j].color));
-    map->coord[i][j].x = GAP * j;
-    map->coord[i][j].y = GAP * i;
-    ft_isometric(&(map->coord[i][j].x), \
-                 &(map->coord[i][j].y), \
-                   map->coord[i][j].z);
-    //map->coord[i][j].x += 350;
-    //map->coord[i][j].y += 350;
-    return (1);
+    int i;
+    int j;
+
+    i = -1;
+    while (++i < map->height)
+    {
+        j = -1;
+        map->coord[i][++j].y = map->scale * i; 
+        while (j < map->width)
+        {
+            map->coord[i][j].x = map->scale * j;
+            ft_isometric(&(map->coord[i][j].x), \
+                    &(map->coord[i][j].y), \
+                    map->coord[i][j].z, \
+                    map->scale);
+        }
+    } 
 } 
 
 static  int ft_make_coord(t_map *map, char **lines, int h)
@@ -72,7 +78,9 @@ static  int ft_make_coord(t_map *map, char **lines, int h)
     i = 0;
     while (i < map->width)
     {
-        ft_set_coord(map, lines[i], i, h);
+        map->coord[h][i].color = 0x0FFF00;
+        map->coord[h][i].z = ft_atoi_hex(lines[h], \
+                &(map->coord[h][i].color));
         i++;
     }
     printf("cnt = %d\n", cnt);

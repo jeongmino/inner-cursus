@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:47:08 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/25 13:17:43 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/01 14:30:51 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static	void	*ft_memset(void *b, int c, size_t len)
 static void ft_var_set(t_map *map)
 {
     ft_memset(map, 0, sizeof(t_map));
+    map->scale = 30;
 }
 
 int main(int argc, char **argv)
@@ -37,10 +38,10 @@ int main(int argc, char **argv)
     fd = ft_open_file(argv[1]);
     ft_var_set(&map);
     ft_init(&map, fd, argv[1]);
-    ft_search_coord(&map);
+//    ft_search_coord(&map);
     ft_print_coord(&map);
     ft_draw(&map);
-    mlx_put_image_to_window(map.map_data->mlx, map.map_data->win, \
-     map.map_data->img, 0, 0);
+ //   mlx_hook(map.map_data->win, VAL_EXIT, 0, , &map);
+    mlx_hook(map.map_data->win, VAL_MOUSE, 0, mouse_pressed, &map);
     mlx_loop(map.map_data->mlx);
 }

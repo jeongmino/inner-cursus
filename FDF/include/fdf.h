@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:38:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/25 15:38:20 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/01 16:00:45 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,14 @@
 
 # define HEIGHT			1080
 # define WIDTH			1920
+# define X_ORIGIN       700            //960
+# define Y_ORIGIN       400            //540
 # define BUFFER_SIZE    256
-# define GAP            35
+# define GAP            4
+# define VAL_MOUSE      4
+# define VAL_EXIT       17
+# define VAL_MOUSE_HEEL_UP 5
+# define VAL_MOUSE_HEEL_DONW 4
 
 enum    e_error
 {
@@ -57,6 +63,7 @@ typedef struct  s_map
     int             width;
     int             height;
     int             map[2];
+    double            scale;
     
 }               t_map;
 
@@ -80,7 +87,7 @@ int	    ft_atoi_hex(char *str, int *color);
 
 /* ft_draw.c */
 void	ft_draw(t_map *map);
-void	ft_isometric(int *x, int *y, int z);
+void	ft_isometric(int *x, int *y, int z, int scale);
 
 /* ft_init.c */
 void    ft_init(t_map *map, int fd, char *file);
@@ -94,8 +101,13 @@ void	ft_perror(int err);
 /* ft_parse.c */
 void    ft_parse_map(t_map *map, int fd, int flag);
 void    ft_print_coord(t_map *map);
+void    ft_set_coord(t_map *map);
 
 /* ft_search_coord.c */
 void    ft_search_coord(t_map *map);
+
+/* keyboard */
+void	reset_img(t_map *map);
+int	mouse_pressed(int button, int x, int y, t_map *map);
 
 #endif
