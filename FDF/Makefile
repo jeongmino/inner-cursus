@@ -18,7 +18,6 @@ SRC = 			gnl.c\
 				ft_util.c\
 				fdf.c\
 				parse.c\
-				ft_search_coord.c\
 				keyboard.c\
 
 

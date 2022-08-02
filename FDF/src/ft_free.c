@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:01:43 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/17 21:56:10 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/01 20:05:14 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ char	*ft_frees(char **strs, char *str)
 
 void	ft_coord_free(t_map *map, int index)
 {
-	int 			i;
-	
+	int	i;
+
 	i = 0;
 	while (i <= index)
 		free(map->coord[i++]);

@@ -6,27 +6,27 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:57:18 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/18 16:01:53 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/01 20:13:49 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int ft_strlen(char  *str)
+int	ft_strlen(char	*str)
 {
-    int i;
+	int	i;
 
-    if (str == NULL)
+	if (str == NULL)
 		return (0);
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-static void ft_bzero(void *s, size_t n)
+static void	ft_bzero(void *s, size_t n)
 {
-	unsigned char *ptr;
+	unsigned char	*ptr;
 
 	ptr = (unsigned char *)s;
 	while (n--)
@@ -35,9 +35,10 @@ static void ft_bzero(void *s, size_t n)
 
 void	*ft_memalloc(size_t size)
 {
-	void *ptr;
+	void	*ptr;
 
-	if ((ptr = malloc(size)))
+	ptr = malloc(size);
+	if (ptr)
 		ft_bzero(ptr, size);
 	return (ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:38:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/08/01 16:00:45 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/01 20:24:51 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,55 +22,54 @@
 
 # define HEIGHT			1080
 # define WIDTH			1920
-# define X_ORIGIN       700            //960
-# define Y_ORIGIN       400            //540
+# define X_ORIGIN       540
+# define Y_ORIGIN       360
 # define BUFFER_SIZE    256
-# define GAP            4
+# define EXIT_PAD       53
 # define VAL_MOUSE      4
-# define VAL_EXIT       17
+# define VAL_EXIT       2
 # define VAL_MOUSE_HEEL_UP 5
 # define VAL_MOUSE_HEEL_DONW 4
 
-enum    e_error
+enum	e_error
 {
-    MAP_ERROR,
-    ERR_FDF_INIT
+	MAP_ERROR,
+	ERR_FDF_INIT
 };
 
-typedef struct  s_coordinate
+typedef struct s_coordinate
 {
-    int x;
-    int y;
-    int z;
-    int color;
-}               t_coordinate;
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+}	t_coordinate;
 
-typedef struct  s_data
+typedef struct s_data
 {
-    void    *mlx;
-    void    *win;
-    void    *img;
-    char    *addr;
-    int     bits_per_pixel;
-    int     line_length;
-    int     endian;
-}               t_data;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
 
-typedef struct  s_map
+typedef struct s_map
 {
-    t_data          *map_data;         
-    t_coordinate    **coord;
-    int             width;
-    int             height;
-    int             map[2];
-    double            scale;
-    
-}               t_map;
+	t_data			*map_data;
+	t_coordinate	**coord;
+	int				width;
+	int				height;
+	int				map[2];
+	double			scale;
+}	t_map;
 
 
 /* ft_util.c */
-int     ft_strlen(char  *str);
-void    *ft_memalloc(size_t size);
+int		ft_strlen(char  *str);
+void	*ft_memalloc(size_t size);
 
 /* ft_free.c */
 char	*ft_frees(char **strs, char *str);
@@ -83,7 +82,7 @@ char	*get_next_line(int fd);
 char	**ft_split(char const *s, char c);
 
 /* ft_atoi_hex.c */
-int	    ft_atoi_hex(char *str, int *color);
+int		ft_atoi_hex(char *str, int *color);
 
 /* ft_draw.c */
 void	ft_draw(t_map *map);
@@ -103,11 +102,9 @@ void    ft_parse_map(t_map *map, int fd, int flag);
 void    ft_print_coord(t_map *map);
 void    ft_set_coord(t_map *map);
 
-/* ft_search_coord.c */
-void    ft_search_coord(t_map *map);
-
 /* keyboard */
 void	reset_img(t_map *map);
 int	mouse_pressed(int button, int x, int y, t_map *map);
+int     key_hook_esc(int key, t_map *map);
 
 #endif

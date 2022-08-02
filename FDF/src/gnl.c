@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:02 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/18 14:23:57 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/01 20:15:26 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	find_nl(char *str)
 	return (0);
 }
 
-static  char	*str_join(char *s1, char *s2)
+static	char	*str_join(char *s1, char *s2)
 {
 	char	*str;
 	size_t	i;

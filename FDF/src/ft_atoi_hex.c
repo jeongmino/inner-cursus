@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:44:01 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/22 15:26:50 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/01 20:00:50 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static char	ft_toupper(char c)
 
 static int	ft_isdigit_base(char c)
 {
-	const char *digit = "0123456789ABCDEF";
+	const char	*digit = "0123456789ABCDEF";
 	int			i;
-	
+
 	i = 0;
 	while (i < 16)
 	{
 		if (digit[i] == ft_toupper(c))
-			return(i);
+			return (i);
 		i++;
 	}
 	return (-1);
@@ -37,7 +37,7 @@ static int	ft_isdigit_base(char c)
 
 static void	ft_atohex(char *str, int *color)
 {
-    int	sum;
+	int	sum;
 
 	sum = 0x0;
 	while (*str == '0' || *str == 'x' || *str == 'X')
@@ -48,13 +48,12 @@ static void	ft_atohex(char *str, int *color)
 		sum = sum * 16 + ft_isdigit_base(*str);
 		str++;
 	}
-	//printf("sum = %d\n", sum);
 	*color = sum;
 }
 
 int	ft_atoi_hex(char *str, int *color)
 {
-	int sign;
+	int	sign;
 	int	sum;
 
 	sign = 1;
@@ -69,8 +68,7 @@ int	ft_atoi_hex(char *str, int *color)
 		sum = (sum * 10) + sign * (*str - '0');
 		str++;
 	}
-    if (*str != '\0')
-        ft_atohex(++str, color);
-//	printf("sum = %d\n", sum);
+	if (*str != '\0')
+		ft_atohex(++str, color);
 	return (sum);
 }

@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 13:14:38 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/17 13:28:57 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/01 20:10:58 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,27 @@ static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-// check file_name including NULL
-static int  ft_check_file(char *file_name)
-{
-    char    *tmp;
-    int     cnt;
 
-    tmp = file_name;
-    cnt = ft_strlen(tmp) - 4;
-    while (cnt-- > 0)
-        tmp++;
-    return (ft_strncmp(".fdf", tmp, 5));
-}   
-
-int ft_open_file(char *file)
+static int	ft_check_file(char *file_name)
 {
-    int fd;
-    
-    if (ft_check_file(file))
-        return (-1);
-    fd = open(file, O_RDONLY);
-    if (fd < 0)
-        exit(1);
-    return (fd);
+	char	*tmp;
+	int		cnt;
+
+	tmp = file_name;
+	cnt = ft_strlen(tmp) - 4;
+	while (cnt-- > 0)
+		tmp++;
+	return (ft_strncmp(".fdf", tmp, 5));
+}
+
+int	ft_open_file(char *file)
+{
+	int	fd;
+
+	if (ft_check_file(file))
+		return (-1);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		exit(1);
+	return (fd);
 }
