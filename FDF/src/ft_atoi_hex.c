@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:44:01 by junoh             #+#    #+#             */
-/*   Updated: 2022/08/01 20:00:50 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/02 15:27:52 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_atoi_hex(char *str, int *color)
 		sum = (sum * 10) + sign * (*str - '0');
 		str++;
 	}
-	if (*str != '\0')
+	if (*str != '\0' && *str == ',')
 		ft_atohex(++str, color);
 	return (sum);
 }

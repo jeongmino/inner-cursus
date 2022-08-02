@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/08/01 20:18:04 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/02 16:52:28 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static	int	ft_make_coord(t_map *map, char **nums, int h)
 	i = 0;
 	while (i < map->width)
 	{
-		map->coord[h][i].color = 0x0FFF00;
+		map->coord[h][i].color = 0xFFFFFF;
 		map->coord[h][i].z = ft_atoi_hex(nums[i], &(map->coord[h][i].color));
 		i++;
 	}

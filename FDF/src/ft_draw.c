@@ -12,27 +12,17 @@
 
 #include "../include/fdf.h"
 
-void	ft_isometric(int *x, int *y, int z, int scale)
+void	ft_isometric(double *x, double *y, double z, double scale)
 {
-	int	prev_x;
-	int	prev_y;
+	double	prev_x;
+	double	prev_y;
 
 	prev_x = *x;
 	prev_y = *y;
-	*x = (prev_x - prev_y) * cos(0.523599);
-	*y = (prev_x + prev_y) * sin(0.523599) - (z * scale);
+	*x = round(((prev_x - prev_y) * cos((M_PI * 30) / 180)));
+	*y = round((prev_x + prev_y) * sin((M_PI * 30) / 180)) - (z * scale);
 	*x += X_ORIGIN;
 	*y += Y_ORIGIN;
-}
-
-static void	my_mlx_pixel_put(t_map *map, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = map->map_data->addr + (y * map->map_data->line_length + \
-	 x * (map->map_data->bits_per_pixel / 8));
-	 (void)color;
-	*(unsigned int *)dst = 0x0fff00;
 }
 
 static t_coordinate	set_point(t_map *map, int i, int j)
@@ -48,8 +38,8 @@ static t_coordinate	set_point(t_map *map, int i, int j)
 
 static void	same_x(t_map *map, t_coordinate s_point, t_coordinate e_point)
 {
-	int	y_flag;
-	int	y;
+	double	y_flag;
+	double	y;
 
 	y_flag = 1;
 	y = s_point.y;
@@ -73,19 +63,21 @@ static void	draw_edge(t_map *map, t_coordinate s_point, t_coordinate e_point)
 	x_flag = 1;
 	if (s_point.x > e_point.x)
 		x_flag = -1;
+	inc = (e_point.y - s_point.y) / (e_point.x - s_point.x);
 	if (s_point.x == e_point.x)
 		same_x(map, s_point, e_point);
 	else
 	{
-		while ((int)x != e_point.x)
+		while (1)
 		{
-			inc = ((double)e_point.y - (double)s_point.y) / \
-			 ((double)e_point.x - (double)s_point.x);
 			y = inc * (x - (double)s_point.x) +(double)s_point.y;
-			if ((x > 0 && WIDTH > x) && (y > 0 && HEIGHT > y))
-				my_mlx_pixel_put(map, x, y, s_point.color);
+			if (((int)x > 0 && WIDTH > (int)x) && (((int)y > 0 && HEIGHT > \
+			(int)y)))
+				my_mlx_pixel_put(map, (int)x, (int)y, s_point.color);
 			x += (0.05 * x_flag);
-		}
+			if (e_point.x - 0.1 <= x && x <= e_point.x)
+				break ;
+		}cd
 	}
 }
 
@@ -102,9 +94,9 @@ void	ft_draw(t_map *map)
 		while (++w < map->width)
 		{	
 			if (w != map->width - 1)
-				draw_edge(map ,set_point(map, h, w), set_point(map, h, w + 1));
+				draw_edge(map, set_point(map, h, w), set_point(map, h, w + 1));
 			if (h != map->height - 1)
-				draw_edge(map ,set_point(map, h, w), set_point(map, h + 1, w));
+				draw_edge(map, set_point(map, h, w), set_point(map, h + 1, w));
 		}	
 	}
 	mlx_put_image_to_window(map->map_data->mlx, map->map_data->win, \

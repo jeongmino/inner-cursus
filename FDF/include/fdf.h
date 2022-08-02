@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:38:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/08/01 20:24:51 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/02 16:34:32 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define VAL_MOUSE      4
 # define VAL_EXIT       2
 # define VAL_MOUSE_HEEL_UP 5
-# define VAL_MOUSE_HEEL_DONW 4
+# define VAL_MOUSE_HEEL_DOWN 4
 
 enum	e_error
 {
@@ -39,10 +39,10 @@ enum	e_error
 
 typedef struct s_coordinate
 {
-	int	x;
-	int	y;
-	int	z;
-	int	color;
+	double	x;
+	double	y;
+	double	z;
+	int		color;
 }	t_coordinate;
 
 typedef struct s_data
@@ -62,14 +62,13 @@ typedef struct s_map
 	t_coordinate	**coord;
 	int				width;
 	int				height;
-	int				map[2];
 	double			scale;
 }	t_map;
 
-
 /* ft_util.c */
-int		ft_strlen(char  *str);
-void	*ft_memalloc(size_t size);
+int		ft_strlen(char	*str);
+void	*ft_memalloc(size_t	size);
+void	my_mlx_pixel_put(t_map *map, int x, int y, int color);
 
 /* ft_free.c */
 char	*ft_frees(char **strs, char *str);
@@ -86,25 +85,25 @@ int		ft_atoi_hex(char *str, int *color);
 
 /* ft_draw.c */
 void	ft_draw(t_map *map);
-void	ft_isometric(int *x, int *y, int z, int scale);
+void	ft_isometric(double *x, double *y, double z, double scale);
 
 /* ft_init.c */
-void    ft_init(t_map *map, int fd, char *file);
+void	ft_init(t_map *map, int fd, char *file);
 
 /* ft_open_file.c */
-int     ft_open_file(char *file);
+int		ft_open_file(char *file);
 
 /* ft_put_error.c */
 void	ft_perror(int err);
 
 /* ft_parse.c */
-void    ft_parse_map(t_map *map, int fd, int flag);
-void    ft_print_coord(t_map *map);
-void    ft_set_coord(t_map *map);
+void	ft_parse_map(t_map *map, int fd, int flag);
+void	ft_print_coord(t_map *map);
+void	ft_set_coord(t_map *map);
 
 /* keyboard */
 void	reset_img(t_map *map);
-int	mouse_pressed(int button, int x, int y, t_map *map);
-int     key_hook_esc(int key, t_map *map);
+int		mouse_pressed(int button, int x, int y, t_map *map);
+int		key_hook_esc(int key, t_map *map);
 
 #endif

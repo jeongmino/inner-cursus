@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:57:18 by junoh             #+#    #+#             */
-/*   Updated: 2022/08/01 20:13:49 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/02 16:45:22 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,13 @@ void	*ft_memalloc(size_t size)
 	if (ptr)
 		ft_bzero(ptr, size);
 	return (ptr);
+}
+
+void	my_mlx_pixel_put(t_map *map, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = map->map_data->addr + (y * map->map_data->line_length + \
+	 x * (map->map_data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }

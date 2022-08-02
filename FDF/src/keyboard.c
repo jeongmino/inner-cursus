@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:02:39 by junoh             #+#    #+#             */
-/*   Updated: 2022/08/01 20:15:54 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/02 16:44:12 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	mouse_pressed(int button, int x, int y, t_map *map)
 	(void)y;
 	(void)button;
 	reset_img(map);
-	if (button == VAL_MOUSE_HEEL_DONW && map->scale > 0.00001)
+	if (button == VAL_MOUSE_HEEL_DOWN && map->scale > 2)
 		map->scale -= map->scale * 0.1;
 	else if (button == VAL_MOUSE_HEEL_UP && map->scale < 10000)
 		map->scale += map->scale * 0.1;
