@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:47:08 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/14 15:18:46 by junoh            ###   ########.fr       */
+/*   Updated: 2022/07/16 20:13:31 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ int main(int argc, char **argv)
     if (map.coord == NULL)
         return(1);
     ft_parse_map(&map, fd, 1);
-    
+ 
 }
