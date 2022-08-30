@@ -6,67 +6,104 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:30 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/16 13:33:28 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/02 16:52:28 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static  int ft_make_coord(t_map *map, char **lines)
+static	void	ft_make_coord_arr(t_map *map)
 {
-    int width;
+	int	i;
 
-    width = map->width;
-    while (*lines)
-    {
-        *(map->coord) = (t_coordinate*)malloc(sizeof(t_coordinate));
-        if (map->*coord == NULL)
-            return (1);
-        while (width--)
-        {
-            **(map->coord)->z = ft_atoi_hex(*lines);
-            **(map->coord)->x++;
-            **(map->coord)->y++;
-            **(map->coord)++;
-        }
-        *(map->coord)++;
-        *lines++;
-    }
+	i = 0;
+	while (i < map->height)
+	{
+		map->coord[i] = (t_coordinate *)ft_memalloc(sizeof(t_coordinate) * \
+			map->width);
+		if (map->coord[i] == NULL)
+		{
+			ft_coord_free(map, i);
+			exit (1);
+		}
+		i++;
+	}
+	return ;
 }
 
-static  void    ft_count_size(t_map *map, char **str)
+void	ft_set_coord(t_map *map)
 {
-    int len;
-    int tmp;
-    
-    len = 0;
-    while (str[0][len])
-        len++;
-    if (map->height == 0)
-        map->width = len;
-    else
-        tmp = len;
-    if (tmp != map->width)
-            ft_perror(MAP_ERROR);
-    map->height++;
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < map->height)
+	{
+		j = -1;
+		while (++j < map->width)
+		{
+			map->coord[i][j].x = j * map->scale;
+			map->coord[i][j].y = i * map->scale;
+			ft_isometric(&(map->coord[i][j].x), \
+					&(map->coord[i][j].y), \
+					map->coord[i][j].z, \
+					map->scale);
+		}
+	}
 }
 
-void    ft_parse_map(t_map *map, int fd, int flag)
+static	int	ft_make_coord(t_map *map, char **nums, int h)
 {
-    char    *line;
-    char    **line_nums;
-    
-    while (1)
-    {
-        line = get_next_line(fd);
-        if (line == NULL)
-            break;
-        line_nums = ft_split(line, ' ');
-        if (flag)
-            if(ft_make_coord(map, line_nums))
-               ft_frees(line_nums, line); 
-        ft_count_size(map, line_nums);
-        ft_frees(line_nums, line);
-    }
-    return ;
+	int	i;
+
+	i = 0;
+	while (i < map->width)
+	{
+		map->coord[h][i].color = 0xFFFFFF;
+		map->coord[h][i].z = ft_atoi_hex(nums[i], &(map->coord[h][i].color));
+		i++;
+	}
+	return (0);
+}
+
+static	void	ft_count_size(t_map *map, char **str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	if (map->height == 0)
+		map->width = len;
+	if (len != map->width)
+		ft_perror(MAP_ERROR);
+	map->height++;
+}
+
+void	ft_parse_map(t_map *map, int fd, int flag)
+{
+	char	*line;
+	char	**nums;
+	int		h;
+
+	h = 0;
+	if (flag == 1)
+		ft_make_coord_arr(map);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		nums = ft_split(line, ' ');
+		if (flag == 1)
+		{
+			if (ft_make_coord(map, nums, h))
+				ft_frees(nums, line);
+		}
+		if (flag != 1)
+			ft_count_size(map, nums);
+		ft_frees(nums, line);
+		h++;
+	}
+	return ;
 }

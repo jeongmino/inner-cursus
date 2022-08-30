@@ -6,34 +6,11 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:44:01 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/16 11:41:36 by junoh            ###   ########.fr       */
+/*   Updated: 2022/08/02 15:27:52 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-int	ft_atoi_hex(char *str)
-{
-	int sign;
-	int	sum;
-
-	sign = 1;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str++ == '-')
-			sign = -1;
-	}
-	sum = 0;
-	while (*str >= '0' && *str <= '9')
-	{
-		sum = (sum * 10) + sign * (*str - '0');
-		str++;
-	}
-    if (*str == ',')
-        ft_atohex(++str);
-    else
-	    return (sum);
-}
 
 static char	ft_toupper(char c)
 {
@@ -45,29 +22,53 @@ static char	ft_toupper(char c)
 
 static int	ft_isdigit_base(char c)
 {
-	const char *digit = "0123456789ABCDEF";
+	const char	*digit = "0123456789ABCDEF";
 	int			i;
-	
+
 	i = 0;
 	while (i < 16)
 	{
 		if (digit[i] == ft_toupper(c))
-			return(i);
+			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-static int	ft_atohex(char *str)
+static void	ft_atohex(char *str, int *color)
 {
-    int	sum;
+	int	sum;
 
 	sum = 0x0;
+	while (*str == '0' || *str == 'x' || *str == 'X')
+		str++;
 	while ((*str >= '0' && *str <= '9') || (*str >= 'a' && *str <= 'f') || \
 	(*str >= 'A' && *str <= 'F'))
 	{
 		sum = sum * 16 + ft_isdigit_base(*str);
 		str++;
 	}
+	*color = sum;
+}
+
+int	ft_atoi_hex(char *str, int *color)
+{
+	int	sign;
+	int	sum;
+
+	sign = 1;
+	if (*str == '-')
+	{
+		sign = -1;
+		str++;
+	}
+	sum = 0;
+	while (*str >= '0' && *str <= '9')
+	{
+		sum = (sum * 10) + sign * (*str - '0');
+		str++;
+	}
+	if (*str != '\0' && *str == ',')
+		ft_atohex(++str, color);
 	return (sum);
 }
