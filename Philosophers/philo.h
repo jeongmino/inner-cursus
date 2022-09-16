@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:17:24 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/15 12:48:25 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/16 16:11:18 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ Boolean
 */
 # define TRUE  1
 # define FALSE 0
+
+/*
+ERROR MSG
+*/
+# define ARG1 "There is an error on setting number of philosohpers"
+# define ARG2 "There is an error on setting time to die"
+# define ARG3 "There is an error on setting time to eat"
+# define ARG4 "There is an error on setting time to think"
+# define ARG5 "There is an error on setting "
 
 /*
 Color
@@ -75,4 +84,9 @@ typedef struct s_info
 	pthread_mutex_t	write;    
 }               t_info;
 
+
+
+void    print_error(int argc, t_info *info);
+
+int check_args(int argc, char **argv, t_info *info);
 #endif
