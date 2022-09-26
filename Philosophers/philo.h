@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:17:24 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/16 16:11:18 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/26 13:37:44 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <string.h>
 # include <stdlib.h>
 # include <sys/time.h>
+
+/* gcc -Wall -Wextra -Werror create_philo.c init_info.c parse_arg.c philo.c philo.h print.c routine.c timer.c */
 
 /*
 INT_MAX
@@ -38,6 +41,16 @@ ERROR MSG
 # define ARG3 "There is an error on setting time to eat"
 # define ARG4 "There is an error on setting time to think"
 # define ARG5 "There is an error on setting "
+
+/*
+ACTION MSG
+*/
+# define EATTING "is eatting"
+# define THINKING "is thinking"
+# define SLEEPING "is sleeping"
+# define DYING "died"
+# define LEFT_FORK "has taken a fork"
+# define RIGTH_FORK "has taken a fork"
 
 /*
 Color
@@ -70,7 +83,9 @@ typedef struct s_philo
 {
     int id;
     int eat_cnt;
+    void *s_info_ptr;
     size_t last_eat_t;
+    size_t birth_t;
     pthread_t   thread;
     t_fork      fork;
 }               t_philo;
@@ -78,15 +93,43 @@ typedef struct s_philo
 typedef struct s_info
 {
     int     philo_dead;
+    int     philo_num_full;
+    int     full_over;
+    int     n_thread;
     t_args  s_args;
-    t_philo *phlio;
+    t_philo *philo;
     pthread_mutex_t	*forks;
-	pthread_mutex_t	write;    
+	pthread_mutex_t	write;
 }               t_info;
 
 
 
+/*  parse_arg.c */
+int check_args(int argc, char **argv, t_info *info);
+
+/* init_info.c */
+int init_table(t_info *info);
+
+/* timer.c */
+long long	get_time(void);
+void	smart_timer(size_t time);
+
+/* routine */
+void    *routine(void *argument);
+int     take_fork(t_info *info);
+int     eatting(t_info *info);
+int thinking_and_sleeping(t_info *info);
+
+/* print.c */
+int    philo_print(t_info *info, char *status, int i);
 void    print_error(int argc, t_info *info);
 
-int check_args(int argc, char **argv, t_info *info);
+/* create_philo.c */
+int create_philo(t_info *info);
+void destroy_philos(t_info *info);
+
+/* create_philo.c */
+int create_philo(t_info *info);
+void destroy_philos(t_info *info);
+
 #endif

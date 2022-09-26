@@ -37,7 +37,6 @@ int	main(int argc, char **argv)
 	t_map	map;
 	int		fd;
 
-<<<<<<< HEAD:FDF/src/main.c
     fd = open(argv[1], O_RDONLY);
     ft_var_set(&map);
     ft_parse_map(&map, fd, 0);
@@ -47,15 +46,4 @@ int	main(int argc, char **argv)
         return(1);
     ft_parse_map(&map, fd, 1);
  
-=======
-	if (argc != 2)
-		return (1);
-	fd = ft_open_file(argv[1]);
-	ft_var_set(&map);
-	ft_init(&map, fd, argv[1]);
-	ft_draw(&map);
-	mlx_hook(map.map_data->win, VAL_MOUSE, 0, mouse_pressed, &map);
-	mlx_hook(map.map_data->win, VAL_EXIT, 0, key_hook_esc, &map);
-	mlx_loop(map.map_data->mlx);
->>>>>>> 9a060b2ee0ec7760518e90b46eb019288d246923:FDF/src/fdf.c
 }

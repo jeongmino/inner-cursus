@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:37:13 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/16 16:59:53 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/23 18:09:51 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int philo_atoi(char *str)
     i = 0;
     while (str[i] >= '0' && str[i] <= '9')
     {
-        num += (str[i] - '0') * 10;
+        num = num * 10 + str[i] - '0';
         if (num > VAL_INT_MAX)
             return (FALSE);
         i++;
