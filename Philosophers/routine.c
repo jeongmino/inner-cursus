@@ -6,71 +6,62 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:31:23 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/26 20:09:36 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/27 13:39:06 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
 
-void    *routine(void *argument)
+void    *routine(void *arg)
 {
-    t_info *info;
-    int     i;
+    t_philo *philo;
 
-    info = (t_info *)argument;
-    pthread_mutex_lock(&info->write);
-    printf("i = %d\n", i);
-    i = info->n_thread;
-    printf("debug2\n");
-    info->philo[i].last_eat_t = get_time();
-    printf("debug3\n");
-    pthread_mutex_unlock(&info->write);
-    printf("debug4\n");
-    if (info->philo[i].id / 2 == 0)
-        smart_timer(info->s_args.time_to_eat / 2);
-    printf("debug5\n");
-    while(take_fork(info) && eatting(info) && thinking_and_sleeping(info))
+    philo = (t_philo *)arg;
+    pthread_mutex_lock(&philo->info_ptr->write);
+    philo->last_eat_t = get_time();
+    pthread_mutex_unlock(&philo->info_ptr->write);
+    while(take_fork(philo) && eatting(philo) && thinking_and_sleeping(philo))
             ;
     return ((void *)TRUE);
 }
 
-int take_fork(t_info *info)
+int take_fork(t_philo *philo)
 {
-    int i;
-
-    i = info->n_thread;
-    pthread_mutex_lock(&info->forks[info->philo[i].fork.left]);        
-    if (philo_print(info, LEFT_FORK, i) == FALSE)
+    int ret = 0;
+    pthread_mutex_lock(&philo->info_ptr->forks[philo->fork.left]);
+    if (philo_print(philo->info_ptr, LEFT_FORK, philo->id - 1) == FALSE)
         return (FALSE);
-    pthread_mutex_lock(&info->forks[info->philo[i].fork.right]); 
-    if (philo_print(info, RIGTH_FORK, i))
+    pthread_mutex_lock(&philo->info_ptr->forks[philo->fork.right]);  
+    if (philo_print(philo->info_ptr, RIGTH_FORK, philo->id - 1))
         return (FALSE);
-    pthread_mutex_unlock(&info->forks[info->philo[i].fork.left]); 
-    pthread_mutex_unlock(&info->forks[info->philo[i].fork.right]); 
+    ret = pthread_mutex_unlock(&philo->info_ptr->forks[philo->fork.left]);
+    printf("ret = %d\n", ret);
+    pthread_mutex_unlock(&philo->info_ptr->forks[philo->fork.right]); 
     return (TRUE);
 }
 
-int eatting(t_info *info)
+int eatting(t_philo *philo)
 {
-    int i;
-
-    i = info->n_thread;
-    if (philo_print(info, EATTING, i) == FALSE)
+    printf("eatting\n");
+    if (philo_print(philo->info_ptr, EATTING, philo->id - 1) == FALSE)
         return (FALSE);
-    smart_timer(info->s_args.time_to_eat);
+    smart_timer(philo->info_ptr->s_args.time_to_eat);
     return (TRUE);
 }
 
-int thinking_and_sleeping(t_info *info)
+int thinking_and_sleeping(t_philo *philo)
 {
-    int i;
+    // int i;
 
-    i = info->n_thread;
-    if (philo_print(info, SLEEPING, i) == FALSE)
+    // i = info->n_thread;
+    printf("before sleep\n");
+    if (philo_print(philo->info_ptr, SLEEPING, philo->id - 1) == FALSE)
         return (FALSE);
-    smart_timer(info->s_args.time_to_sleep);
-    if (philo_print(info, THINKING, i) == FALSE)
+    smart_timer(philo->info_ptr->s_args.time_to_sleep);
+    printf("after sleep\n");
+    if (philo_print(philo->info_ptr, THINKING, philo->id - 1) == FALSE)
         return (FALSE);
+    printf("after think\n");
     usleep(50);
     return (TRUE);
 }

@@ -6,18 +6,20 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:15:15 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/26 20:06:50 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/27 10:43:53 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
-/*
-static void fork_print(t_info *info)
+
+void fork_print(t_info *info)
 {
     int i = 0;
 
     while (i < info->s_args.nums_of_philos)
     {
+        printf("%dth philosopher have %dth id\n", info->philo[i].id, info->philo[i].id);
+        printf("%dth philosopher have eat_cnt = %d\n", info->philo[i].id, info->philo[i].eat_cnt);
         printf("%dth philosopher have left %dth pork\n", info->philo[i].id ,\
         info->philo[i].fork.left);
         printf("%dth philosopher have right %dth pork\n", info->philo[i].id ,\
@@ -25,7 +27,7 @@ static void fork_print(t_info *info)
         i++;
     }
     return ;
-} */
+}
 
 static int sit_philo(t_info *info)
 {
@@ -34,7 +36,6 @@ static int sit_philo(t_info *info)
     info->philo = malloc(sizeof(t_philo) * info->s_args.nums_of_philos);
     if (info->philo == NULL)
         return (FALSE);
-    // memset(info, 0, sizeof(t_info));
     i = -1;
     while (++i < info->s_args.nums_of_philos)
     {
@@ -42,9 +43,9 @@ static int sit_philo(t_info *info)
         info->philo[i].eat_cnt =0;
         info->philo[i].fork.left = i;
         info->philo[i].fork.right = i + 1;
-        info->philo[i].s_info_ptr = &info;
+        info->philo[i].info_ptr = info;
     }
-    info->philo[0].fork.left = i - 1;
+    info->philo[0].fork.left = i;
     return (TRUE);   
 }
 
@@ -64,6 +65,8 @@ static int  set_fork(t_info *info)
         if (pthread_mutex_init(&info->forks[i], NULL) != 0)
             return (FALSE);
     }
+    if (pthread_mutex_init(&info->write, NULL) != 0)
+        return (FALSE);
     return (TRUE);    
 }
 
@@ -79,5 +82,6 @@ int init_table(t_info *info)
         printf("Malloc error when sitting philosophers\n");
         return (FALSE);
     }
+    // fork_print(info);
     return (TRUE);           
 }

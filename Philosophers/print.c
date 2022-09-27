@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 15:56:04 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/26 13:26:48 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/27 13:31:09 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ static int	philo_strncmp(const char *s1, const char *s2, size_t n)
 
 static void eatting_is_full(t_info *info, int i)
 {
+    printf("eat_cnt = %d\n", info->philo[i].eat_cnt);
     if (++(info->philo[i].eat_cnt) == info->s_args.nums_of_must_eat)
         info->philo_num_full++;
     if (info->philo_num_full == info->s_args.nums_of_must_eat)
         info->full_over++;
+    printf("eat_cnt = %d\n", info->philo[i].eat_cnt);
     return ;
 }
 
@@ -59,9 +61,9 @@ int    philo_print(t_info *info, char *status, int i)
     if (!info->philo_dead && (info->philo[i].eat_cnt != info->s_args.nums_of_must_eat))
     {
         now_t = get_time();
-        printf("%s%ld      %d    %s", GREEN, \
+        printf("%s%ld      %dth philosopher    %s", GREEN, \
         now_t - info->philo[i].birth_t, info->philo[i].id, status);
-        if (philo_strncmp(status, EATTING, ft_strlen(EATTING)))
+        if (!philo_strncmp(status, EATTING, ft_strlen(EATTING)))
             eatting_is_full(info, i);
     }
     else

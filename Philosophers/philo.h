@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:17:24 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/26 13:37:44 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/27 12:09:37 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ ACTION MSG
 # define THINKING "is thinking"
 # define SLEEPING "is sleeping"
 # define DYING "died"
-# define LEFT_FORK "has taken a fork"
-# define RIGTH_FORK "has taken a fork"
+# define LEFT_FORK "has taken a fork\n"
+# define RIGTH_FORK "has taken a fork\n"
 
 /*
 Color
@@ -83,10 +83,10 @@ typedef struct s_philo
 {
     int id;
     int eat_cnt;
-    void *s_info_ptr;
     size_t last_eat_t;
     size_t birth_t;
     pthread_t   thread;
+    struct  s_info      *info_ptr;
     t_fork      fork;
 }               t_philo;
 
@@ -109,16 +109,17 @@ int check_args(int argc, char **argv, t_info *info);
 
 /* init_info.c */
 int init_table(t_info *info);
+void fork_print(t_info *info);
 
 /* timer.c */
 long long	get_time(void);
 void	smart_timer(size_t time);
 
 /* routine */
-void    *routine(void *argument);
-int     take_fork(t_info *info);
-int     eatting(t_info *info);
-int thinking_and_sleeping(t_info *info);
+void    *routine(void *arg);
+int     take_fork(t_philo *philo);
+int     eatting(t_philo *philo);
+int     thinking_and_sleeping(t_philo *philo);
 
 /* print.c */
 int    philo_print(t_info *info, char *status, int i);
