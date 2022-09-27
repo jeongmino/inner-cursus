@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:17:24 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/27 12:09:37 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/27 15:28:05 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ ERROR MSG
 /*
 ACTION MSG
 */
-# define EATTING "is eatting"
+# define EATTING "is eating"
 # define THINKING "is thinking"
 # define SLEEPING "is sleeping"
 # define DYING "died"
-# define LEFT_FORK "has taken a fork\n"
-# define RIGTH_FORK "has taken a fork\n"
+# define LEFT_FORK "has taken a fork"
+# define RIGTH_FORK "has taken a fork"
 
 /*
 Color

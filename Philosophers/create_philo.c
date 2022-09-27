@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:08:10 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/27 13:36:44 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/27 16:51:40 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int create_philo(t_info *info)
         if (pthread_join(philo[i].thread, NULL) != 0)
             return (FALSE);
     }
+    printf("?????????????????????\n");
     return (TRUE);
 }
 

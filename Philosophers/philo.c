@@ -6,19 +6,33 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:00:36 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/26 13:48:06 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/27 16:57:08 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
 
-
 static void dying_msg(t_info *info, size_t now_t, int i)
 {
-     info->philo_dead++;
-     printf("%s%ld      %d    %s", PINK, \
-    now_t - info->philo[i].birth_t, info->philo[i].id, DYING);
-    pthread_mutex_unlock(&info->write);
+    info->philo_dead++;
+    printf("%s%ld      %d    %s", PINK, \
+    now_t - info->philo[i].birth_t, info->philo[i].id, DYING); 
+}
+
+static int one_philo(t_info *info)
+{
+    size_t  now_t;
+
+    if (pthread_mutex_init(&info->write, NULL) != 0)
+        return (FALSE);
+    info->philo[0].birth_t = get_time();
+    now_t = get_time();
+    printf("%s%ld      %d    %s\n", GREEN, \
+       now_t - info->philo[0].birth_t, info->philo[0].id, LEFT_FORK);
+    smart_timer(info->s_args.time_to_die);
+    dying_msg(info, get_time(), 0);
+    destroy_philos(info);
+    return (TRUE);
 }
 
 static void monitoring(t_info *info)
@@ -33,14 +47,18 @@ static void monitoring(t_info *info)
         {
             pthread_mutex_lock(&info->write);
             now_t = get_time();
-            if (now_t > info->s_args.time_to_die + info->philo[i].last_eat_t)
+            if (now_t > info->s_args.time_to_die + info->philo[i].last_eat_t )
             {
+                printf("now_t - time_to_die = %lu\n", now_t - info->philo[i].last_eat_t);
                 dying_msg(info, now_t, i);
+                pthread_mutex_unlock(&info->write);
                 return ;                    
             }
             else if (info->full_over != 0)
             {
                 pthread_mutex_unlock(&info->write);
+                printf("full_over = %d\n", info->full_over);
+                printf("no die over?\n");
                 return ;
             }
             pthread_mutex_unlock(&info->write);
@@ -57,12 +75,16 @@ int main(int argc, char *argv[])
         return (1);
     if (init_table(&info) == FALSE)
         return (1);
-
+    if (info.s_args.nums_of_philos == 1)
+    {
+        if (one_philo(&info) == FALSE)
+            return (1);
+        return (0);
+    }
     if (create_philo(&info) == FALSE)
         return (1);
     else
         monitoring(&info);
     destroy_philos(&info);
-    return (0);
-    
+    return (0);   
 }
