@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handling_time.c                                    :+:      :+:    :+:   */
+/*   timer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 22:11:32 by anolivei          #+#    #+#             */
-/*   Updated: 2021/11/28 21:59:47 by anolivei         ###   ########.fr       */
+/*   Created: 2022/09/23 12:27:46 by junoh             #+#    #+#             */
+/*   Updated: 2022/09/26 13:38:17 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-
-/*
-** tv_sec is in seconds, 1 second = 1000 milliseconds
-** tv_usec is in microseconds, 1 microsecond = 0.001 milliseconds
-*/
+#include "./philo.h"
 
 long long	get_time(void)
 {
@@ -25,14 +20,12 @@ long long	get_time(void)
 	return ((time.tv_sec * 1000) + (time.tv_usec * 0.001));
 }
 
-long long	delta_time(long long time)
+void	smart_timer(size_t time)
 {
-	if (time > 0)
-		return (get_time() - time);
-	return (0);
+	size_t	start;
+    
+	start = get_time();
+	while ((size_t)get_time() < time + start)
+		usleep(100);
 }
 
-void	exec_action(long long time)
-{
-	usleep(time * 1000);
-}

@@ -1,0 +1,51 @@
+[0;38;5;44m0      1    has taken a left fork
+sucees
+[0;38;5;44m0      1    has taken a right fork
+[0;38;5;44m0      1    is eating
+[0;38;5;44m100      4    has taken a left fork
+[0;38;5;44m100      3    has taken a left fork
+[0;38;5;44m100      2    has taken a left fork
+[0;38;5;44m100      5    has taken a left fork
+sucees
+[0;38;5;44m100      5    has taken a right fork
+[0;38;5;44m100      5    is eating
+sucees
+[0;38;5;44m100      4    has taken a right fork
+[0;38;5;44m100      4    is eating
+sucees
+[0;38;5;44m100      3    has taken a right fork
+[0;38;5;44m100      3    is eating
+sucees
+[0;38;5;44m100      2    has taken a right fork
+[0;38;5;44m100      2    is eating
+[0;38;5;44m200      1    is sleeping
+[0;38;5;44m300      3    is sleeping
+[0;38;5;44m300      2    is sleeping
+[0;38;5;44m300      4    is sleeping
+[0;38;5;44m300      5    is sleeping
+[0;38;5;44m400      1    is thinking
+[0;38;5;44m400      1    has taken a left fork
+sucees
+[0;38;5;44m400      1    has taken a right fork
+[0;38;5;44m400      1    is eating
+[0;38;5;44m500      4    is thinking
+[0;38;5;44m500      5    is thinking
+[0;38;5;44m500      2    is thinking
+[0;38;5;44m500      3    is thinking
+[0;38;5;44m500      4    has taken a left fork
+sucees
+[0;38;5;44m500      4    has taken a right fork
+[0;38;5;44m500      4    is eating
+[0;38;5;44m500      2    has taken a left fork
+sucees
+[0;38;5;44m500      2    has taken a right fork
+[0;38;5;44m500      2    is eating
+[0;38;5;44m500      5    has taken a left fork
+sucees
+[0;38;5;44m500      5    has taken a right fork
+[0;38;5;44m500      5    is eating
+[0;38;5;44m500      3    has taken a left fork
+sucees
+[0;38;5;44m500      3    has taken a right fork
+[0;38;5;44m500      3    is eating
+now_t = 1664433233274, die = 400 last_eat = 1664433233174
