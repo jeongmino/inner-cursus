@@ -6,15 +6,15 @@
 #    By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 12:05:03 by junoh             #+#    #+#              #
-#    Updated: 2022/09/29 16:53:18 by junoh            ###   ########.fr        #
+#    Updated: 2022/09/29 17:08:09 by junoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 NAME = philo
 # CFLAGS = -Wall -Werror -Wextra
-# CFLAGS = -Wall -Werror -Wextra -fsanitize=thread -g
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -fsanitize=thread -g
+# CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 
 SRCS = philo.c			\
 	   create_philo.c	\

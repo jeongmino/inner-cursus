@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:00:36 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/29 16:54:47 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/29 17:19:20 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ static void monitoring(t_info *info)
             now_t = get_time();
             if (now_t > info->s_args.time_to_die + info->philo[i].last_eat_t )
             {
-                // printf("now_t - time_to_die = %lu\n", now_t - info->philo[i].last_eat_t);
+                printf("now_t - time_to_die = %lu\n", now_t - info->philo[i].last_eat_t);
                 dying_msg(info, now_t, i);
+                info->philo_dead++;
                 pthread_mutex_unlock(&info->write);
                 return ;
             }
@@ -81,8 +82,13 @@ int main(int argc, char *argv[])
     }
     if (create_philo(&info) == FALSE)
         return (1);
-    else
-        monitoring(&info);
+    monitoring(&info);
+    int i = -1;
+    while (++i < info.s_args.nums_of_philos)
+    {
+        if (pthread_join(info.philo[i].thread, NULL) != 0)
+            return (FALSE);
+    }       
     destroy_philos(&info);
     return (0);
 }

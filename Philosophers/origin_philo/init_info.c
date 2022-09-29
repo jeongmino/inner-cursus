@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:15:15 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/29 17:02:42 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/29 17:10:12 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int sit_philo(t_info *info)
         info->philo[i].fork.left = i;
         info->philo[i].fork.right = i + 1;
         info->philo[i].info_ptr = info;
+        info->philo[i].last_eat_t = get_time();
     }
     info->philo[i - 1].fork.right = 0;
     return (TRUE);   
