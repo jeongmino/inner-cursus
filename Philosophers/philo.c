@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:00:36 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/27 16:57:08 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/28 14:33:07 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void monitoring(t_info *info)
 {
     int     i;
     size_t  now_t;
-    
+
     while (1)
     {
         i = -1;
@@ -52,7 +52,7 @@ static void monitoring(t_info *info)
                 printf("now_t - time_to_die = %lu\n", now_t - info->philo[i].last_eat_t);
                 dying_msg(info, now_t, i);
                 pthread_mutex_unlock(&info->write);
-                return ;                    
+                return ;
             }
             else if (info->full_over != 0)
             {
@@ -69,7 +69,7 @@ static void monitoring(t_info *info)
 int main(int argc, char *argv[])
 {
     t_info  info;
-    
+
     memset(&info, 0, sizeof(t_info));
     if (check_args(argc, argv, &info) == FALSE)
         return (1);
@@ -86,5 +86,5 @@ int main(int argc, char *argv[])
     else
         monitoring(&info);
     destroy_philos(&info);
-    return (0);   
+    return (0);
 }

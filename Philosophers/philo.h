@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:17:24 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/27 15:28:05 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/28 20:30:56 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_info
     int     philo_num_full;
     int     full_over;
     int     n_thread;
+    size_t birth_t;
     t_args  s_args;
     t_philo *philo;
     pthread_mutex_t	*forks;

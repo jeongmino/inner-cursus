@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 15:56:04 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/27 17:03:04 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/28 20:27:47 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,15 @@ static void eatting_is_full(t_info *info, int i)
 int    philo_print(t_info *info, char *status, int i)
 {
     size_t now_t;
-    // t_info *info;
 
-    // info = philo->s_info_ptr;
     pthread_mutex_lock(&info->write);
     if (!info->philo_dead && (info->philo[i].eat_cnt != info->s_args.nums_of_must_eat))
     {
         now_t = get_time();
         printf("%s%ld      %d    %s\n", GREEN, \
-        now_t - info->philo[i].birth_t, info->philo[i].id, status);
+        now_t - info->birth_t, info->philo[i].id, status);
         if (!philo_strncmp(status, EATTING, ft_strlen(EATTING)))
-        {
             eatting_is_full(info, i);
-            // printf("full_cnt = %d\n", info->philo_num_full);
-        }
     }
     else
     {
