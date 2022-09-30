@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:37:13 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/30 14:43:11 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/30 17:56:14 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	philo_atoi(char *str)
 			return (FALSE);
 		i++;
 	}
+	if (str[i])
+		return (FALSE);
 	return (num);
 }
 

@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:00:36 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/30 14:45:44 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/30 17:56:53 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	one_philo(t_info *info)
 	info->birth_t = get_time();
 	now_t = get_time();
 	printf("%s%ld      %d    %s\n", GREEN, \
-	   now_t - info->birth_t, info->philo[0].id, LEFT_FORK);
+		now_t - info->birth_t, info->philo[0].id, LEFT_FORK);
 	smart_timer(info->s_args.time_to_die);
 	dying_msg(info, get_time(), 0);
 	destroy_philos(info);

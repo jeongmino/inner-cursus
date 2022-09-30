@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:08:10 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/30 14:41:11 by junoh            ###   ########.fr       */
+/*   Updated: 2022/09/30 17:57:28 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void	destroy_philos(t_info *info)
 		pthread_mutex_destroy(&info->forks[i]);
 	pthread_mutex_destroy(&info->write);
 	free(info->philo);
+	free(info->forks);
 }
