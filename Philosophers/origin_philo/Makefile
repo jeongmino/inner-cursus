@@ -6,14 +6,14 @@
 #    By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 12:05:03 by junoh             #+#    #+#              #
-#    Updated: 2022/09/29 17:08:09 by junoh            ###   ########.fr        #
+#    Updated: 2022/09/30 15:33:49 by junoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 NAME = philo
-# CFLAGS = -Wall -Werror -Wextra
-CFLAGS = -Wall -Werror -Wextra -fsanitize=thread -g
+CFLAGS = -Wall -Werror -Wextra
+# CFLAGS = -Wall -Werror -Wextra -fsanitize=thread -g
 # CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 
 SRCS = philo.c			\
@@ -29,7 +29,7 @@ OBJS = $(SRCS:.c=.o)
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $^ -lpthread -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -39,9 +39,6 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
-
-lldb: $(NAME)
-	$(CC) $(CFLAGS) $(SRCS) -g -lpthread -o $(NAME)
 
 re:
 	make fclean
