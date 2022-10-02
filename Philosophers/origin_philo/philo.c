@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:00:36 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/30 17:56:53 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/02 22:25:08 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	dying_msg(t_info *info, size_t now_t, int i)
 {
-	info->philo_dead++;
 	printf("%s%ld      %d    %s\n", PINK, \
 	now_t - info->birth_t, info->philo[i].id, DYING);
 }
@@ -35,9 +34,10 @@ static int	one_philo(t_info *info)
 	return (TRUE);
 }
 
-static void	monitoring(t_info *info)
+static	void	monitoring(t_info *info)
 {
 	int		i;
+	int		end_f;
 	size_t	now_t;
 
 	while (1)
@@ -46,20 +46,19 @@ static void	monitoring(t_info *info)
 		while (++i < info->s_args.nums_of_philos)
 		{
 			pthread_mutex_lock(&info->write);
+			end_f = info->end;
 			now_t = get_time();
 			if (now_t > info->s_args.time_to_die + info->philo[i].last_eat_t)
 			{
-				dying_msg(info, now_t, i);
-				info->philo_dead++;
+				info->end++;
+				printf("%ld %d died\n", now_t - info->birth_t, i + 1);
 				pthread_mutex_unlock(&info->write);
 				return ;
 			}
-			else if (info->full_over != 0)
-			{
+			else
 				pthread_mutex_unlock(&info->write);
+			if (end_f)
 				return ;
-			}
-			pthread_mutex_unlock(&info->write);
 		}
 	}
 }

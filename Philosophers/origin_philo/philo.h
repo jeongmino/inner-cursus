@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:17:24 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/30 15:41:46 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/02 22:21:53 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ INT_MAX
 /*
 Boolean
 */
-# define TRUE  1
-# define FALSE 0
+# define TRUE  		1
+# define FALSE 		0
+# define SUCCESS 	0
+# define ERROR		1
 
 /*
 ERROR MSG
@@ -89,8 +91,10 @@ typedef struct s_philo
 typedef struct s_info
 {
 	int				philo_dead;
-	int				philo_num_full;
+	int				philo_num_full; // m.n_full
 	int				full_over;
+	int				status; // m.stat
+	int				end; // m.end
 	int				n_thread;
 	size_t			birth_t;
 	t_args			s_args;
@@ -116,7 +120,7 @@ int			eatting(t_philo *philo);
 int			thinking_and_sleeping(t_philo *philo);
 
 /* print.c */
-int			philo_print(t_info *info, char *status, int i);
+int			philo_print(t_info *info, char *status, int i, int eat_status);
 void		print_error(int argc, t_info *info);
 
 /* create_philo.c */
