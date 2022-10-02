@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:31:23 by junoh             #+#    #+#             */
-/*   Updated: 2022/09/30 14:49:53 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/02 13:33:09 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	pthread_mutex_lock(&philo->info_ptr->write);
-	philo->last_eat_t = get_time();
-	pthread_mutex_unlock(&philo->info_ptr->write);
 	if (philo->id % 2 == 0)
 		smart_timer(philo->info_ptr->s_args.time_to_eat / 2);
 	while (take_fork(philo) && eatting(philo) && thinking_and_sleeping(philo))
