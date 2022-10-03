@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:08:10 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/03 21:27:58 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/03 22:25:10 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	create_philo(t_info *info)
 		if (pthread_create(&philo[i].thread, NULL, \
 		&routine, &info->philo[i]) != 0)
 			return (FALSE);
-		// if (pthread_detach(philo[i].thread) != 0)
-		// 	return (FALSE);
 	}
 	info->birth_t = get_time();
 	pthread_mutex_unlock(&info->write);
