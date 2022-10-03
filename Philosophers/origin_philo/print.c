@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 15:56:04 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/03 20:44:32 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/03 21:34:15 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	philo_print(t_info *info, char *str, int i, int eat_status)
 			{
 				info->philo_num_full++;
 				if (info->philo_num_full == info->s_args.nums_of_philos)
+				{
+					printf("[%d]\n", i + 1);
 					info->end++;
+				}
 			}
 		}
 	}
