@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:00:36 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/02 22:25:08 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/03 20:56:19 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	dying_msg(t_info *info, size_t now_t, int i)
 {
-	printf("%s%ld      %d    %s\n", PINK, \
+	printf("%ld      %d    %s\n", \
 	now_t - info->birth_t, info->philo[i].id, DYING);
 }
 
@@ -26,7 +26,7 @@ static int	one_philo(t_info *info)
 		return (FALSE);
 	info->birth_t = get_time();
 	now_t = get_time();
-	printf("%s%ld      %d    %s\n", GREEN, \
+	printf("%ld      %d    %s\n", \
 		now_t - info->birth_t, info->philo[0].id, LEFT_FORK);
 	smart_timer(info->s_args.time_to_die);
 	dying_msg(info, get_time(), 0);

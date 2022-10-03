@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:17:24 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/02 22:21:53 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/03 20:55:36 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,6 @@ ACTION MSG
 # define LEFT_FORK "has taken a fork"
 # define RIGTH_FORK "has taken a fork"
 
-/*
-Color
-*/
-# define PINK "\e[0;38;5;199m"
-# define GREEN "\e[0;32m"
-# define BLUE "\e[0;34m"
-# define G_BLUE "\e[0;38;5;24m"
-# define B_BLUE "\e[1;34m"
-# define G_CYAN "\e[0;38;5;44m"
-
 typedef struct s_args
 {
 	int	nums_of_philos;
@@ -91,10 +81,10 @@ typedef struct s_philo
 typedef struct s_info
 {
 	int				philo_dead;
-	int				philo_num_full; // m.n_full
+	int				philo_num_full;
 	int				full_over;
-	int				status; // m.stat
-	int				end; // m.end
+	int				status;
+	int				end;
 	int				n_thread;
 	size_t			birth_t;
 	t_args			s_args;

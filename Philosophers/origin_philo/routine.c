@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:31:23 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/02 22:29:54 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/03 21:03:24 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ int	eatting(t_philo *philo)
 
 int	thinking_and_sleeping(t_philo *philo)
 {
-	pthread_mutex_unlock(&philo->info_ptr->forks[philo->fork.left]);
-	pthread_mutex_unlock(&philo->info_ptr->forks[philo->fork.right]);
 	if (philo_print(philo->info_ptr, SLEEPING, philo->id - 1, 0) == ERROR)
 		return (FALSE);
+	pthread_mutex_unlock(&philo->info_ptr->forks[philo->fork.left]);
+	pthread_mutex_unlock(&philo->info_ptr->forks[philo->fork.right]);
 	smart_timer(philo->info_ptr->s_args.time_to_sleep);
 	if (philo_print(philo->info_ptr, THINKING, philo->id - 1, 0) == ERROR)
 		return (FALSE);
-	// usleep(50);
+	usleep(50);
 	return (TRUE);
 }
