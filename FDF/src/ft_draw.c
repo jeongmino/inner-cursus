@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 17:00:22 by junoh             #+#    #+#             */
-/*   Updated: 2022/07/22 1 by j31unoh            ###   ########.fr       */
+/*   Updated: 2022/10/11 11:15:30 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	draw_edge(t_map *map, t_coordinate s_point, t_coordinate e_point)
 			x += (0.05 * x_flag);
 			if (e_point.x - 0.1 <= x && x <= e_point.x)
 				break ;
-		}cd
+		}
 	}
 }
 
